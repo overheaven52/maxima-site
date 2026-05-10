@@ -1,0 +1,124 @@
+/* Глобальные стили синего неонового сайта.
+   Большая часть оформления делается через Tailwind CDN (см. index.html). */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #06152d;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: #e2e8f0;
+  overflow-x: clip;
+}
+
+/* Горизонтальная прокрутка вкладок в админке на телефоне */
+.admin-tabs-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
+}
+
+.touch-manip {
+  touch-action: manipulation;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.4);
+  color: #f0f9ff;
+}
+
+.section-fade {
+  animation: 0.55s both sectionFade;
+}
+
+@keyframes sectionFade {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes neonPulse {
+  0%,
+  to {
+    box-shadow:
+      0 0 0 1px rgba(34, 211, 238, 0.18),
+      0 0 28px -12px rgba(34, 211, 238, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(34, 211, 238, 0.45),
+      0 0 40px -8px rgba(34, 211, 238, 0.6);
+  }
+}
+
+.neon-card {
+  position: relative;
+  isolation: isolate;
+  animation: 6s ease-in-out infinite neonPulse;
+}
+
+.neon-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  background: linear-gradient(
+    125deg,
+    rgba(34, 211, 238, 0.22),
+    transparent 42%,
+    rgba(59, 130, 246, 0.12) 72%,
+    transparent
+  );
+}
+
+.neon-text {
+  background: linear-gradient(100deg, #a5f3fc 0%, #fff 38%, #67e8f9 72%, #cffafe 100%);
+  background-size: 180% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(34, 211, 238, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Hero: сетка масштабируется с шириной экрана, без «мелкой клетки» на ультрашироких */
+.hero-section-grid {
+  background-image:
+    linear-gradient(rgba(34, 211, 238, 0.065) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.065) 1px, transparent 1px);
+  background-size:
+    clamp(36px, 4.5vw, 80px) clamp(36px, 4.5vw, 80px);
+  background-position: center top;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neon-card {
+    animation: none;
+  }
+  .section-fade {
+    animation: none;
+  }
+}

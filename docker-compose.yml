@@ -1,0 +1,20 @@
+# Локальный или серверный запуск: docker compose up -d
+# Перед первым запуском скопируйте .env.example → .env и задайте пароль и секреты.
+
+services:
+  web:
+    build: .
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+    volumes:
+      # Контент админки и загрузки сохраняются на диске хоста
+      - maxima-data:/app/server/data
+    restart: unless-stopped
+
+volumes:
+  maxima-data:

@@ -1,0 +1,11 @@
+node_modules
+dist
+.git
+.env
+*.log
+.DS_Store
+_snapshots
+_netlify_*
+.cursor
+server/data/content.json
+server/data/uploads

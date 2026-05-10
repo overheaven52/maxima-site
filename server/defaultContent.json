@@ -1,0 +1,747 @@
+{
+  "site": {
+    "brandName": "MAXIMA",
+    "tagline": "Профессиональный клининг и инфраструктурный менеджмент в Казахстане",
+    "baseUrl": "https://maxima.kz",
+    "defaultLocale": "ru_KZ",
+    "primaryColor": "#22d3ee",
+    "backgroundColor": "#06152d",
+    "fontFamily": "Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+  },
+  "seo": {
+    "defaultTitle": "MAXIMA — профессиональный клининг в Казахстане",
+    "defaultDescription": "Безупречная чистота и гигиена коммерческих объектов в Казахстане. Метод подготовленных мопов, собственный парк техники, 17 городов, более 500 000 м² под обслуживанием.",
+    "defaultKeywords": "клининг Казахстан, профессиональная уборка, безведерная уборка, метод подготовленных мопов, поломоечная машина, Tennant, бизнес-центры, ТРЦ, промышленный альпинизм",
+    "defaultImage": "/uploads/default-og.png",
+    "defaultOgImageAlt": "MAXIMA — профессиональный клининг и аренда спецтехники в Казахстане",
+    "defaultOgType": "website",
+    "ogImageWidth": 1200,
+    "ogImageHeight": 630,
+    "metaAuthor": "MAXIMA",
+    "facebookAppId": "",
+    "twitterSite": "",
+    "twitterCreator": "",
+    "bingSiteVerification": "",
+    "hreflangAlternates": [],
+    "robotsTxtExtra": "",
+    "robots": "index,follow",
+    "googleAnalyticsId": "",
+    "yandexMetrikaId": "",
+    "googleSiteVerification": "",
+    "yandexVerification": ""
+  },
+  "contact": {
+    "phone": "+7 775 714 77 12",
+    "phoneDigits": "77757147712",
+    "whatsappUrl": "https://wa.me/77757147712",
+    "whatsappText": "Здравствуйте, интересует профессиональный клининг",
+    "instagramUrl": "https://www.instagram.com/polomoechnayamashina",
+    "instagramHandle": "@polomoechnayamashina",
+    "tiktokUrl": "https://www.tiktok.com/@tennant87757147712moika",
+    "tiktokHandle": "@tennant87757147712moika",
+    "email": "info@maxima.kz",
+    "address": "Казахстан, 17 городов",
+    "workingHours": "24/7 — приём заявок круглосуточно",
+    "links": [
+      {
+        "id": "phone-main",
+        "label": "Телефон",
+        "text": "+7 775 714 77 12",
+        "href": "tel:+77757147712",
+        "icon": "📞"
+      },
+      {
+        "id": "wa-main",
+        "label": "WhatsApp",
+        "text": "Написать в WhatsApp — ответим быстро",
+        "href": "https://wa.me/77757147712",
+        "icon": "💬"
+      },
+      {
+        "id": "email-main",
+        "label": "Email",
+        "text": "info@maxima.kz",
+        "href": "mailto:info@maxima.kz",
+        "icon": "✉️"
+      },
+      {
+        "id": "addr-main",
+        "label": "Адрес",
+        "text": "Казахстан, 17 городов",
+        "href": "",
+        "icon": "📍"
+      },
+      {
+        "id": "ig-main",
+        "label": "Instagram",
+        "text": "Мой Instagram — @polomoechnayamashina",
+        "href": "https://www.instagram.com/polomoechnayamashina",
+        "icon": "📸"
+      },
+      {
+        "id": "tt-main",
+        "label": "TikTok",
+        "text": "TikTok — @tennant87757147712moika",
+        "href": "https://www.tiktok.com/@tennant87757147712moika",
+        "icon": "🎵"
+      }
+    ]
+  },
+  "header": {
+    "logoText": "MAXIMA",
+    "logoSubtitle": "Профессиональный клининг",
+    "logoImageUrl": "/logo-maxima.png",
+    "logoImageAlt": "MAXIMA — логотип, силуэт поломоечной машины",
+    "navLinks": [
+      { "id": "about", "label": "О компании", "href": "/about" },
+      { "id": "services", "label": "Услуги", "href": "/cleaning" },
+      { "id": "industries", "label": "Отрасли", "href": "/industries" },
+      { "id": "technology", "label": "Технологии", "href": "/technology" },
+      { "id": "equipment", "label": "Оборудование", "href": "/equipment" },
+      { "id": "rent", "label": "Аренда техники", "href": "/#rent" },
+      { "id": "faq", "label": "FAQ", "href": "/faq" },
+      { "id": "contact", "label": "Контакты", "href": "/contact" }
+    ],
+    "ctaButtonText": "Бесплатный аудит",
+    "ctaButtonHref": "https://wa.me/77757147712?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%B0%D1%83%D0%B4%D0%B8%D1%82"
+  },
+  "hero": {
+    "eyebrow": "Профессиональный клининг с 10-летним опытом",
+    "title": "Безупречная чистота коммерческих объектов",
+    "titleHighlight": "по всему Казахстану",
+    "subtitle": "Промышленный стандарт клининга с использованием инновационной системы подготовленных мопов. Снижаем расход воды и время уборки в 2 раза.",
+    "primaryButton": {
+      "text": "Рассчитать стоимость уборки",
+      "href": "https://wa.me/77757147712?text=%D0%A0%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D0%B9%D1%82%D0%B5%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C%20%D1%83%D0%B1%D0%BE%D1%80%D0%BA%D0%B8"
+    },
+    "secondaryButton": {
+      "text": "Заказать бесплатный аудит",
+      "href": "https://wa.me/77757147712?text=%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%B0%D1%83%D0%B4%D0%B8%D1%82"
+    },
+    "imageUrl": "",
+    "imageAlt": "MAXIMA — профессиональный клининг",
+    "stats": [
+      { "id": "exp", "value": "10+", "label": "лет на рынке" },
+      { "id": "area", "value": "500 000 м²", "label": "под обслуживанием" },
+      { "id": "cities", "value": "17", "label": "городов Казахстана" },
+      { "id": "support", "value": "24/7", "label": "приём заявок" }
+    ]
+  },
+  "about": {
+    "eyebrow": "О компании",
+    "heading": "Эксперт в области профессионального клининга и инфраструктурного менеджмента",
+    "intro": "Наша компания управляет чистотой и гигиеной на объектах общей площадью более 500 000 м². 10 лет опыта работы на рынке Казахстана.",
+    "imageUrl": "",
+    "imageAlt": "Команда MAXIMA",
+    "advantagesTitle": "Почему мы — надёжный партнёр",
+    "advantages": [
+      {
+        "id": "tech",
+        "icon": "⚙️",
+        "title": "Технологическое превосходство",
+        "description": "Внедрили систему «безведерной уборки» (метод подготовленных мопов). Исключаем перенос бактерий между зонами и ускоряем процесс уборки в 2 раза."
+      },
+      {
+        "id": "own",
+        "icon": "🚜",
+        "title": "Собственные ресурсы",
+        "description": "В отличие от посредников, используем собственный парк профессиональной техники: поломоечные машины, оборудование для высотных работ и специализированный инвентарь."
+      },
+      {
+        "id": "scale",
+        "icon": "🌍",
+        "title": "Масштабируемость",
+        "description": "Обеспечиваем единый стандарт сервиса в 17 городах Казахстана, включая Астану, Алматы, Шымкент и Атырау."
+      },
+      {
+        "id": "safety",
+        "icon": "🛡️",
+        "title": "Безопасность и ответственность",
+        "description": "Все специалисты аттестованы, а профессиональная ответственность компании застрахована — гарантируем сохранность вашего имущества."
+      }
+    ]
+  },
+  "cleaning": {
+    "heading": "Наши услуги",
+    "leadTitle": "Комплексные решения для безупречного вида и долговечности ваших объектов",
+    "leadHtml": "Мы предлагаем <strong>полный цикл клининговых и инфраструктурных услуг</strong> — от ежедневной поддерживающей уборки до промышленного альпинизма и зимнего обслуживания территорий.",
+    "ctaText": "Заказать клининг",
+    "ctaHref": "https://wa.me/77757147712?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BB%D0%B8%D0%BD%D0%B8%D0%BD%D0%B3",
+    "imageUrl": "",
+    "categories": [
+      {
+        "id": "daily",
+        "icon": "✨",
+        "title": "Ежедневный клининг",
+        "subtitle": "Daily Cleaning",
+        "description": "Обеспечение чистоты в течение рабочего дня с эффектом «невидимого присутствия» персонала.",
+        "items": [
+          "Уборка офисов, зон общего пользования и входных групп",
+          "Дезинфекция санузлов и фуд-кортов",
+          "Управление чистотой при пиковых нагрузках (для ТРЦ)"
+        ]
+      },
+      {
+        "id": "special",
+        "icon": "🏗️",
+        "title": "Специализированные и высотные работы",
+        "subtitle": "Профессиональное оборудование и допуски",
+        "description": "Работы, требующие специальной подготовки и профессионального оборудования.",
+        "items": [
+          "Промышленный альпинизм: мойка остекления и фасадов на любой высоте",
+          "Уход за полами: кристаллизация мрамора, химическая чистка ковролина",
+          "Нанесение защитных полимерных покрытий",
+          "Послестроительная уборка — полная подготовка объекта к запуску"
+        ]
+      },
+      {
+        "id": "soft",
+        "icon": "🌳",
+        "title": "Инфраструктурный менеджмент",
+        "subtitle": "Soft Services",
+        "description": "Комплексный подход к содержанию прилегающей территории и обеспечению комфорта.",
+        "items": [
+          "Благоустройство: озеленение и уход за дорожным покрытием",
+          "Зимнее обслуживание: механизированная и ручная уборка снега",
+          "Охрана и безопасность: посты физической охраны и аудит рисков"
+        ]
+      }
+    ],
+    "highlights": [
+      "Единая точка входа (Account Manager) и консолидированная отчётность ежемесячно",
+      "Мобилизация и выход на объект — от 5 до 14 рабочих дней",
+      "Гибкость: договор с расходными материалами или без них"
+    ]
+  },
+  "industries": {
+    "heading": "Отраслевые решения",
+    "description": "Знаем специфику каждого сегмента и подбираем под него технологии, режим работы и инвентарь.",
+    "items": [
+      {
+        "id": "bc",
+        "icon": "",
+        "label": "Бизнес-центры (Класс А, В)",
+        "description": "Безупречный вид входных групп, чистота лифтов и зон общего пользования, работа с заявками через мобильное приложение.",
+        "accent": "Reception-management и работа с заявками через мобильное приложение",
+        "ctaText": "Заказать бесплатный аудит",
+        "ctaHref": "https://wa.me/77757147712?text=%D0%90%D1%83%D0%B4%D0%B8%D1%82%20%D0%91%D0%A6"
+      },
+      {
+        "id": "trc",
+        "icon": "",
+        "label": "ТРЦ и Ритейл (24/7)",
+        "description": "Работа в ночное время, управление чистотой при пиковых нагрузках, дезинфекция фуд-кортов и санузлов.",
+        "accent": "Ночной клининг и чистота зон с высокой проходимостью",
+        "ctaText": "Заказать бесплатный аудит",
+        "ctaHref": "https://wa.me/77757147712?text=%D0%90%D1%83%D0%B4%D0%B8%D1%82%20%D0%A2%D0%A0%D0%A6"
+      },
+      {
+        "id": "logistics",
+        "icon": "",
+        "label": "Логистические центры",
+        "description": "Механизированная уборка больших площадей, очистка промышленных полов и зон разгрузки.",
+        "accent": "Обеспыливание больших площадей и чистка промышленных полов",
+        "ctaText": "Заказать бесплатный аудит",
+        "ctaHref": "https://wa.me/77757147712?text=%D0%90%D1%83%D0%B4%D0%B8%D1%82%20%D0%9B%D0%BE%D0%B3%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0"
+      },
+      {
+        "id": "industrial",
+        "icon": "",
+        "label": "Промышленные объекты",
+        "description": "Уборка цехов, складских площадей, обеспыливание металлоконструкций и соблюдение строгих норм ТБ.",
+        "accent": "Соблюдение строгих норм охраны труда и промышленной безопасности",
+        "ctaText": "Заказать бесплатный аудит",
+        "ctaHref": "https://wa.me/77757147712?text=%D0%90%D1%83%D0%B4%D0%B8%D1%82%20%D0%9F%D1%80%D0%BE%D0%BC"
+      }
+    ]
+  },
+  "technology": {
+    "eyebrow": "Технологии и стандарты",
+    "heading": "Система «безведерной уборки»",
+    "leadHtml": "Мы не переносим бактерии из одного помещения в другое. Метод предварительной подготовки текстиля гарантирует <strong>максимальную гигиену</strong> и снижает время уборки в 2 раза.",
+    "imageUrl": "",
+    "benefits": [
+      {
+        "id": "hygiene",
+        "icon": "🧪",
+        "title": "Максимальная гигиена",
+        "description": "Каждая зона обрабатывается чистым подготовленным мопом — никакого переноса бактерий между помещениями."
+      },
+      {
+        "id": "speed",
+        "icon": "⚡",
+        "title": "Ускорение в 2 раза",
+        "description": "Технология сокращает время уборки и расход воды без потери качества."
+      },
+      {
+        "id": "eco",
+        "icon": "🌱",
+        "title": "Экологичность",
+        "description": "Меньше воды и химии при той же эффективности. Используем сертифицированные средства и контролируем дозировки."
+      },
+      {
+        "id": "control",
+        "icon": "📊",
+        "title": "Контроль качества",
+        "description": "Единые стандарты, чек-листы и регулярные аудиты на всех объектах."
+      }
+    ]
+  },
+  "equipment": {
+    "eyebrow": "Оборудование и инвентарь",
+    "heading": "Собственный парк профессиональной техники",
+    "description": "В работе используем современные поломоечные и подметальные машины Tennant. Это позволяет нам выйти на объект в день подписания договора и держать единый стандарт качества.",
+    "models": [
+      {
+        "id": "t8410",
+        "name": "Tennant 8410",
+        "type": "Подметание и мойка",
+        "description": "Комбинированная машина для тяжёлых условий. Одновременно подметает мусор и моет пол. Оснащена мощной системой фильтрации для работы без пыли.",
+        "imageUrl": "/rent/from-netlify/m-tennant-t17.png"
+      },
+      {
+        "id": "t8210",
+        "name": "Tennant 8210",
+        "type": "Подметание и мойка",
+        "description": "Высокопроизводительный агрегат «2-в-1». Идеально подходит для больших складских и производственных площадей, обеспечивая чистоту за один проход.",
+        "imageUrl": "/rent/from-netlify/m-tennant-t500.png"
+      },
+      {
+        "id": "t7400",
+        "name": "Tennant 7400",
+        "type": "Мойка",
+        "description": "Индустриальная поломоечная машина с местом для оператора. Высокое давление прижима щёток и эффективный сбор воды.",
+        "imageUrl": "/rent/from-netlify/m-tennant-t16.png"
+      },
+      {
+        "id": "t800",
+        "name": "Tennant 800",
+        "type": "Подметание",
+        "description": "Самая мощная в линейке подметальная машина. Многоступенчатая фильтрация — работает в самых запылённых помещениях.",
+        "imageUrl": "/rent/from-netlify/m-tennant-t800.png"
+      }
+    ]
+  },
+  "geography": {
+    "eyebrow": "География и гарантии",
+    "heading": "Единый стандарт по всей стране",
+    "description": "Одинаково высокое качество уборки в Астане, Алматы, Шымкенте и ещё 14 городах Казахстана.",
+    "imageUrl": "",
+    "items": [
+      {
+        "id": "uniform",
+        "icon": "🇰🇿",
+        "title": "Единый стандарт",
+        "description": "Одинаково высокое качество в 17 городах Казахстана."
+      },
+      {
+        "id": "transparent",
+        "icon": "📑",
+        "title": "Прозрачность",
+        "description": "Единый договор для сетевых клиентов и консолидированная отчётность по всем филиалам ежемесячно."
+      },
+      {
+        "id": "insurance",
+        "icon": "🛡️",
+        "title": "Материальная ответственность",
+        "description": "Деятельность застрахована — гарантируем сохранность дорогостоящих интерьеров и оборудования."
+      }
+    ],
+    "cities": [
+      "Астана",
+      "Алматы",
+      "Шымкент",
+      "Атырау",
+      "Караганда",
+      "Актобе",
+      "Тараз",
+      "Павлодар",
+      "Усть-Каменогорск",
+      "Семей",
+      "Костанай",
+      "Кызылорда",
+      "Уральск",
+      "Петропавловск",
+      "Актау",
+      "Темиртау",
+      "Туркестан"
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "heading": "Часто задаваемые вопросы",
+    "description": "Если не нашли ответ — напишите нам в WhatsApp, ответим в течение часа.",
+    "items": [
+      {
+        "id": "chemistry",
+        "question": "Входит ли стоимость химии в договор?",
+        "answer": "Да, мы предлагаем комплексные решения, включающие все расходные материалы и оборудование. По желанию заказчика возможен договор без расходных материалов."
+      },
+      {
+        "id": "speed",
+        "question": "Как быстро вы выходите на объект?",
+        "answer": "Процесс мобилизации клининговой команды занимает от 5 до 14 рабочих дней. При наличии собственной техники возможен выход на объект в день подписания договора."
+      },
+      {
+        "id": "personal",
+        "question": "Проходит ли персонал проверку?",
+        "answer": "Да, все сотрудники проходят аттестацию и обучение работе с современным инвентарём и химией. Профессиональная ответственность компании застрахована."
+      }
+    ]
+  },
+  "rent": {
+    "heading": "Аренда спецтехники",
+    "description": "Поломоечные и подметательные машины Tennant, подъёмная техника и строительная спецтехника в аренду по Казахстану. С оператором или без.",
+    "categoriesEyebrow": "Главные разделы",
+    "categoryBadge": "Аренда",
+    "categories": [
+      {
+        "id": "polo",
+        "title": "Поломоечные машины",
+        "shortDescription": "Мойка полов: склады, ТЦ, производство",
+        "imageUrl": "/rent/from-netlify/cat-polo.png",
+        "machines": [
+          {
+            "id": "tennant-t16",
+            "name": "Tennant T16",
+            "subtitle": "Тяжёлая райдерная подметально-моечная",
+            "description": "Тяжёлая райдерная подметально-моечная машина для крупных складов, производственных цехов и логистических терминалов.",
+            "imageUrl": "/rent/from-netlify/m-tennant-t16.png",
+            "specs": [],
+            "pricePerDay": "",
+            "available": true
+          },
+          {
+            "id": "tennant-t300",
+            "name": "Tennant T300",
+            "subtitle": "Аккумуляторная поломоечная",
+            "description": "Аккумуляторная поломоечная машина для регулярной уборки производственных и складских помещений.",
+            "imageUrl": "/rent/from-netlify/m-tennant-t300.png",
+            "specs": [],
+            "pricePerDay": "",
+            "available": true
+          },
+          {
+            "id": "tennant-t500",
+            "name": "Tennant T500 (аккумуляторная)",
+            "subtitle": "Тихая райдерная для ТЦ и БЦ",
+            "description": "Тихая райдерная поломоечная машина для объектов с высокими требованиями к уровню шума.",
+            "imageUrl": "/rent/from-netlify/m-tennant-t500.png",
+            "specs": [],
+            "pricePerDay": "",
+            "available": true
+          },
+          {
+            "id": "tennant-t17",
+            "name": "Tennant T17",
+            "subtitle": "Высокопроизводительная райдерная",
+            "description": "Высокопроизводительная машина с местом оператора для интенсивной ежедневной уборки ТРЦ и гипермаркетов.",
+            "imageUrl": "/rent/from-netlify/m-tennant-t17.png",
+            "specs": [],
+            "pricePerDay": "",
+            "available": true
+          }
+        ]
+      },
+      {
+        "id": "sweep",
+        "title": "Подметательные машины",
+        "shortDescription": "Сухая уборка, пыль и мусор на площадях",
+        "imageUrl": "/rent/from-netlify/cat-sweep.png",
+        "machines": [
+          {
+            "id": "tennant-s16",
+            "name": "Tennant S16",
+            "subtitle": "Промышленная подметальная (райдер)",
+            "description": "Промышленная подметальная машина для сухой уборки больших площадей.",
+            "imageUrl": "/rent/from-netlify/m-tennant-s16.png",
+            "specs": [],
+            "pricePerDay": "",
+            "available": true
+          },
+          {
+            "id": "tennant-s20",
+            "name": "Tennant S20",
+            "subtitle": "Мощная подметальная с местом оператора",
+            "description": "Мощная подметальная машина с местом оператора для складов и логистических терминалов.",
+            "imageUrl": "/rent/from-netlify/m-tennant-s20.png",
+            "specs": [],
+            "pricePerDay": "",
+            "available": true
+          },
+          {
+            "id": "tennant-s30",
+            "name": "Tennant S30",
+            "subtitle": "Производительная для крупных объектов",
+            "description": "Производительная подметальная техника для крупных объектов и промышленных площадок.",
+            "imageUrl": "/rent/from-netlify/m-tennant-s30.png",
+            "specs": [],
+            "pricePerDay": "",
+            "available": true
+          }
+        ]
+      },
+      {
+        "id": "lift",
+        "title": "Подъёмная техника",
+        "shortDescription": "Автовышки, подъёмники Genie, Haulotte — монтаж и сервис на высоте",
+        "imageUrl": "/rent/from-netlify/cat-lift.png",
+        "machines": [
+          {
+            "id": "genie-s85",
+            "name": "Genie S85",
+            "subtitle": "Телескопический самоходный подъёмник",
+            "description": "Телескопический самоходный подъёмник для высотных монтажных и фасадных работ с большим рабочим вылетом.",
+            "imageUrl": "/rent/from-netlify/m-genie-s85.png",
+            "specs": [],
+            "pricePerDay": "",
+            "available": true
+          },
+          {
+            "id": "haulotte-ha15ip",
+            "name": "Haulotte HA 15 IP",
+            "subtitle": "Электрический коленчатый подъёмник",
+            "description": "Электрический коленчатый подъёмник для безопасного доступа к труднодоступным зонам: монтаж, сервис, инженерия.",
+            "imageUrl": "/rent/from-netlify/m-haulotte-ha15ip.png",
+            "specs": [],
+            "pricePerDay": "",
+            "available": true
+          },
+          {
+            "id": "isuzu-30m",
+            "name": "Автовышка ISUZU 30 м",
+            "subtitle": "Мобильная автовышка",
+            "description": "Мобильное решение для высотных работ с быстрым выездом: освещение, фасады, реклама, линии связи.",
+            "imageUrl": "/rent/from-netlify/m-isuzu-30m.png",
+            "specs": [],
+            "pricePerDay": "",
+            "available": true
+          }
+        ]
+      },
+      {
+        "id": "construction",
+        "title": "Строительная спецтехника",
+        "shortDescription": "Тракторы, погрузчики, водовозы для стройки и площадок",
+        "imageUrl": "/rent/from-netlify/cat-construction.png",
+        "machines": [
+          {
+            "id": "mtz-82",
+            "name": "Трактор МТЗ-82.1",
+            "subtitle": "Универсальный колёсный трактор",
+            "description": "Универсальный трактор для коммунальных и дорожно-строительных задач с различным навесным оборудованием.",
+            "imageUrl": "/rent/from-netlify/m-mtz-82.png",
+            "specs": [],
+            "pricePerDay": "",
+            "available": true
+          },
+          {
+            "id": "xcmg-loader",
+            "name": "Фронтальные погрузчики XCMG",
+            "subtitle": "Погрузка и планировка",
+            "description": "Производительная техника для погрузки инертных материалов, планировки территории и перемещения грунта.",
+            "imageUrl": "/rent/from-netlify/m-xcmg-loader.png",
+            "specs": [],
+            "pricePerDay": "",
+            "available": true
+          },
+          {
+            "id": "gaz-s85-water",
+            "name": "ГАЗ S85 водовоз",
+            "subtitle": "Подвоз воды и обеспыливание",
+            "description": "Подвоз технической воды, обеспыливание дорог и обслуживание строительных участков.",
+            "imageUrl": "/rent/from-netlify/m-gaz-s85-water.png",
+            "specs": [],
+            "pricePerDay": "",
+            "available": true
+          }
+        ]
+      }
+    ]
+  },
+  "social": {
+    "heading": "Наши соцсети",
+    "instagramText": "Подписывайтесь на наш Instagram — там вы можете увидеть наши актуальные работы!",
+    "tiktokText": "",
+    "youtubeUrl": "",
+    "youtubeText": ""
+  },
+  "footer": {
+    "tagline": "Профессиональный клининг и инфраструктурный менеджмент в Казахстане",
+    "copyright": "© MAXIMA. Все права защищены.",
+    "showSitemap": true,
+    "showPrivacyLink": false,
+    "privacyHref": "/privacy"
+  },
+  "pages": [
+    {
+      "id": "home",
+      "slug": "/",
+      "title": "Главная",
+      "seo": {
+        "title": "",
+        "description": "",
+        "keywords": "",
+        "imageUrl": "",
+        "imageAlt": "",
+        "ogType": "",
+        "articlePublishedTime": "",
+        "articleModifiedTime": "",
+        "sitemapLastmod": "",
+        "sitemapChangefreq": "",
+        "sitemapPriority": "",
+        "noIndex": false
+      },
+      "blocks": [
+        { "id": "h", "type": "hero", "enabled": true },
+        { "id": "r", "type": "rent", "enabled": true }
+      ]
+    },
+    {
+      "id": "about",
+      "slug": "/about",
+      "title": "О компании",
+      "seo": {
+        "title": "О компании MAXIMA — клининг и инфраструктурный менеджмент",
+        "description": "10 лет опыта, более 500 000 м² под обслуживанием, 17 городов Казахстана.",
+        "keywords": "",
+        "imageUrl": "",
+        "imageAlt": "",
+        "ogType": "",
+        "articlePublishedTime": "",
+        "articleModifiedTime": "",
+        "sitemapLastmod": "",
+        "sitemapChangefreq": "monthly",
+        "sitemapPriority": "0.8",
+        "noIndex": false
+      },
+      "blocks": [
+        { "id": "ab", "type": "about", "enabled": true },
+        { "id": "g", "type": "geography", "enabled": true }
+      ]
+    },
+    {
+      "id": "cleaning",
+      "slug": "/cleaning",
+      "title": "Услуги клининга",
+      "seo": {
+        "title": "Услуги профессионального клининга — MAXIMA",
+        "description": "Коммерческий клининг, безведерная уборка, обслуживание бизнес-центров и ТРЦ.",
+        "keywords": "",
+        "imageUrl": "",
+        "imageAlt": "",
+        "ogType": "",
+        "articlePublishedTime": "",
+        "articleModifiedTime": "",
+        "sitemapLastmod": "",
+        "sitemapChangefreq": "monthly",
+        "sitemapPriority": "0.8",
+        "noIndex": false
+      },
+      "blocks": [{ "id": "c", "type": "cleaning", "enabled": true }]
+    },
+    {
+      "id": "industries",
+      "slug": "/industries",
+      "title": "Отрасли",
+      "seo": {
+        "title": "Клининг для отраслей — MAXIMA",
+        "description": "Отраслевые решения для ритейла, логистики, HoReCa и промышленности.",
+        "keywords": "",
+        "imageUrl": "",
+        "imageAlt": "",
+        "ogType": "",
+        "articlePublishedTime": "",
+        "articleModifiedTime": "",
+        "sitemapLastmod": "",
+        "sitemapChangefreq": "monthly",
+        "sitemapPriority": "0.7",
+        "noIndex": false
+      },
+      "blocks": [{ "id": "i", "type": "industries", "enabled": true }]
+    },
+    {
+      "id": "technology",
+      "slug": "/technology",
+      "title": "Технологии",
+      "seo": {
+        "title": "Технологии уборки — метод подготовленных мопов | MAXIMA",
+        "description": "Инновационная система уборки: меньше воды, выше скорость, строгая гигиена.",
+        "keywords": "",
+        "imageUrl": "",
+        "imageAlt": "",
+        "ogType": "",
+        "articlePublishedTime": "",
+        "articleModifiedTime": "",
+        "sitemapLastmod": "",
+        "sitemapChangefreq": "monthly",
+        "sitemapPriority": "0.7",
+        "noIndex": false
+      },
+      "blocks": [{ "id": "t", "type": "technology", "enabled": true }]
+    },
+    {
+      "id": "equipment",
+      "slug": "/equipment",
+      "title": "Оборудование",
+      "seo": {
+        "title": "Профессиональное оборудование для клининга — MAXIMA",
+        "description": "Поломоечные машины Tennant и профессиональный инвентарь для объектов любого масштаба.",
+        "keywords": "",
+        "imageUrl": "",
+        "imageAlt": "",
+        "ogType": "",
+        "articlePublishedTime": "",
+        "articleModifiedTime": "",
+        "sitemapLastmod": "",
+        "sitemapChangefreq": "monthly",
+        "sitemapPriority": "0.8",
+        "noIndex": false
+      },
+      "blocks": [{ "id": "e", "type": "equipment", "enabled": true }]
+    },
+    {
+      "id": "faq",
+      "slug": "/faq",
+      "title": "FAQ",
+      "seo": {
+        "title": "Частые вопросы — MAXIMA",
+        "description": "Ответы о клининге, аренде технике и сотрудничестве с MAXIMA.",
+        "keywords": "",
+        "imageUrl": "",
+        "imageAlt": "",
+        "ogType": "",
+        "articlePublishedTime": "",
+        "articleModifiedTime": "",
+        "sitemapLastmod": "",
+        "sitemapChangefreq": "monthly",
+        "sitemapPriority": "0.6",
+        "noIndex": false
+      },
+      "blocks": [{ "id": "f", "type": "faq", "enabled": true }]
+    },
+    {
+      "id": "contact",
+      "slug": "/contact",
+      "title": "Контакты",
+      "seo": {
+        "title": "Контакты MAXIMA — связаться с нами",
+        "description": "Телефон, WhatsApp, email и соцсети. Приём заявок 24/7.",
+        "keywords": "",
+        "imageUrl": "",
+        "imageAlt": "",
+        "ogType": "",
+        "articlePublishedTime": "",
+        "articleModifiedTime": "",
+        "sitemapLastmod": "",
+        "sitemapChangefreq": "monthly",
+        "sitemapPriority": "0.9",
+        "noIndex": false
+      },
+      "blocks": [
+        { "id": "s", "type": "social", "enabled": true },
+        { "id": "ct", "type": "contact", "enabled": true }
+      ]
+    }
+  ]
+}
