@@ -371,8 +371,10 @@ function seoForPath(content, pathname) {
     ogType: pageSeo.ogType || defaults.defaultOgType || 'website',
     articlePublishedTime: pageSeo.articlePublishedTime || '',
     articleModifiedTime: pageSeo.articleModifiedTime || '',
-    robots: pageSeo.noIndex ? 'noindex,nofollow' : defaults.robots || 'index,follow',
-    canonical: pathname || '/',
+    robots: pageSeo.noIndex
+      ? 'noindex,nofollow'
+      : pageSeo.robots || defaults.robots || 'index,follow',
+    canonical: String(pageSeo.canonicalUrl || pathname || '/').trim() || '/',
   }
 }
 
@@ -419,6 +421,19 @@ function omitEmptyDeep(value) {
     return Object.keys(o).length ? o : undefined
   }
   return value
+}
+
+function parseJsonLdBlocks(raw) {
+  const txt = String(raw || '').trim()
+  if (!txt) return []
+  try {
+    const parsed = JSON.parse(txt)
+    if (Array.isArray(parsed)) return parsed.filter((x) => x && typeof x === 'object')
+    if (parsed && typeof parsed === 'object') return [parsed]
+    return []
+  } catch {
+    return []
+  }
 }
 
 function buildJsonLd(content, seo, canonical, pathname, baseUrl) {
@@ -480,6 +495,8 @@ function renderHead(content, pathname, baseUrl) {
     : ''
   const site = content.site || {}
   const globalSeo = content.seo || {}
+  const page = pageBySlug(content, pathname)
+  const pageSeo = page?.seo || {}
   const ogW = globalSeo.ogImageWidth || 1200
   const ogH = globalSeo.ogImageHeight || 630
   const ga = globalSeo.googleAnalyticsId || ''
@@ -490,9 +507,20 @@ function renderHead(content, pathname, baseUrl) {
   const fbApp = globalSeo.facebookAppId || ''
   const twSite = (globalSeo.twitterSite || '').replace(/^@/, '')
   const twCreator = (globalSeo.twitterCreator || '').replace(/^@/, '')
+  const twCard = String(globalSeo.twitterCard || '').trim()
   const metaAuthor = globalSeo.metaAuthor || site.brandName || ''
+  const geoRegion = String(globalSeo.geoRegion || '').trim()
+  const geoPlacename = String(globalSeo.geoPlacename || '').trim()
+  const geoPosition = String(globalSeo.geoPosition || '').trim()
+  const icbm = String(globalSeo.icbm || '').trim()
   const hreflang = Array.isArray(globalSeo.hreflangAlternates) ? globalSeo.hreflangAlternates : []
   const jsonLd = buildJsonLd(content, seo, canonical, pathname, baseUrl)
+    .map((o) => `<script type="application/ld+json">${JSON.stringify(o)}</script>`)
+    .join('')
+  const customJsonLd = [
+    ...parseJsonLdBlocks(globalSeo.schemaJsonLd),
+    ...parseJsonLdBlocks(pageSeo.schemaJsonLd),
+  ]
     .map((o) => `<script type="application/ld+json">${JSON.stringify(o)}</script>`)
     .join('')
 
@@ -529,13 +557,17 @@ function renderHead(content, pathname, baseUrl) {
     ogType === 'article' && seo.articleModifiedTime
       ? `<meta property="article:modified_time" content="${escapeHtml(seo.articleModifiedTime)}" />`
       : ''
-  const twCard = ogImage ? 'summary_large_image' : 'summary'
+  const twitterCard = twCard || (ogImage ? 'summary_large_image' : 'summary')
 
   return `<title>${escapeHtml(seo.title)}</title>
 <meta name="description" content="${escapeHtml(seo.description)}" />
 <meta name="keywords" content="${escapeHtml(seo.keywords)}" />
 <meta name="robots" content="${escapeHtml(seo.robots)}" />
 ${metaAuthor ? `<meta name="author" content="${escapeHtml(metaAuthor)}" />` : ''}
+${geoRegion ? `<meta name="geo.region" content="${escapeHtml(geoRegion)}" />` : ''}
+${geoPlacename ? `<meta name="geo.placename" content="${escapeHtml(geoPlacename)}" />` : ''}
+${geoPosition ? `<meta name="geo.position" content="${escapeHtml(geoPosition)}" />` : ''}
+${icbm ? `<meta name="ICBM" content="${escapeHtml(icbm)}" />` : ''}
 <link rel="canonical" href="${escapeHtml(canonical)}" />
 ${hreflangTags ? `${hreflangTags}\n` : ''}
 <meta property="og:type" content="${escapeHtml(ogType)}" />
@@ -551,7 +583,7 @@ ${ogImage ? `<meta property="og:image" content="${escapeHtml(ogImage)}" />
 ${fbApp ? `<meta property="fb:app_id" content="${escapeHtml(fbApp)}" />` : ''}
 ${articlePublished}
 ${articleModified}
-<meta name="twitter:card" content="${escapeHtml(twCard)}" />
+<meta name="twitter:card" content="${escapeHtml(twitterCard)}" />
 <meta name="twitter:title" content="${escapeHtml(seo.title)}" />
 <meta name="twitter:description" content="${escapeHtml(seo.description)}" />
 ${twSite ? `<meta name="twitter:site" content="@${escapeHtml(twSite)}" />` : ''}
@@ -560,6 +592,7 @@ ${ogImage ? `<meta name="twitter:image" content="${escapeHtml(ogImage)}" />
 <meta name="twitter:image:alt" content="${escapeHtml(seo.imageAlt)}" />` : ''}
 ${verificationTags}
 ${jsonLd}
+${customJsonLd}
 ${analyticsTags}`
 }
 

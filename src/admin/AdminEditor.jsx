@@ -17,6 +17,12 @@ const OG_TYPES = [
   { value: 'article', label: 'article' },
 ]
 
+const TWITTER_CARDS = [
+  { value: '', label: '— авто (по картинке)' },
+  { value: 'summary', label: 'summary' },
+  { value: 'summary_large_image', label: 'summary_large_image' },
+]
+
 const SITEMAP_FREQ = [
   { value: '', label: '— weekly' },
   { value: 'always', label: 'always' },
@@ -145,6 +151,13 @@ export default function AdminEditor({ onLogout }) {
                 className="text-sm min-h-11 px-4 rounded-lg border border-white/10 text-slate-300 hover:text-white touch-manip"
               >
                 Выйти
+              </button>
+              <button
+                type="button"
+                onClick={resetToDefaults}
+                className="text-sm min-h-11 px-4 rounded-lg border border-red-400/30 text-red-300 hover:bg-red-500/10 touch-manip"
+              >
+                Вернуть к исходному виду
               </button>
             </div>
           </div>
@@ -358,12 +371,61 @@ function SeoTab({ content, update }) {
             onChange={(v) => update(['seo', 'twitterCreator'], v)}
           />
         </div>
+        <label className="block">
+          <div className="text-sm text-slate-300">Twitter Card тип по умолчанию</div>
+          <select
+            value={seo.twitterCard || ''}
+            onChange={(e) => update(['seo', 'twitterCard'], e.target.value)}
+            className="mt-1 w-full max-w-md rounded-lg bg-black/30 border border-white/10 focus:border-cyan-400/60 outline-none px-3 py-2 text-white"
+          >
+            {TWITTER_CARDS.map((o) => (
+              <option key={o.value || 'auto'} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+        </label>
         <TextField
           label="meta author (имя для выдачи)"
           value={seo.metaAuthor}
           onChange={(v) => update(['seo', 'metaAuthor'], v)}
           hint="По умолчанию можно оставить название бренда."
         />
+      </FieldGroup>
+
+      <FieldGroup
+        title="Локальное SEO (гео-мета)"
+        description="Усиливает локальную видимость в поиске для Казахстана и конкретного города."
+      >
+        <div className="grid sm:grid-cols-2 gap-4">
+          <TextField
+            label="geo.region"
+            value={seo.geoRegion}
+            onChange={(v) => update(['seo', 'geoRegion'], v)}
+            placeholder="KZ-71"
+            hint="Например: KZ-71 (Астана), KZ-75 (Алматы)."
+          />
+          <TextField
+            label="geo.placename"
+            value={seo.geoPlacename}
+            onChange={(v) => update(['seo', 'geoPlacename'], v)}
+            placeholder="Astana"
+          />
+          <TextField
+            label="geo.position"
+            value={seo.geoPosition}
+            onChange={(v) => update(['seo', 'geoPosition'], v)}
+            placeholder="51.1694;71.4491"
+            hint="Широта;долгота"
+          />
+          <TextField
+            label="ICBM"
+            value={seo.icbm}
+            onChange={(v) => update(['seo', 'icbm'], v)}
+            placeholder="51.1694, 71.4491"
+            hint="Широта, долгота"
+          />
+        </div>
       </FieldGroup>
 
       <FieldGroup
@@ -399,6 +461,19 @@ function SeoTab({ content, update }) {
           onChange={(v) => update(['seo', 'robotsTxtExtra'], v)}
           rows={4}
           hint="Например: Crawl-delay или отдельные User-agent блоки."
+        />
+      </FieldGroup>
+
+      <FieldGroup
+        title="Schema.org (JSON-LD)"
+        description="Добавьте свою структурированную разметку для продвижения: Organization, Service, BreadcrumbList, FAQ и т.д."
+      >
+        <TextArea
+          label="Глобальный JSON-LD (все страницы)"
+          value={seo.schemaJsonLd || ''}
+          onChange={(v) => update(['seo', 'schemaJsonLd'], v)}
+          rows={8}
+          hint='Вставьте JSON-объект или массив объектов. Пример: {"@context":"https://schema.org","@type":"Organization","name":"MAXIMA"}'
         />
       </FieldGroup>
 
@@ -502,6 +577,35 @@ function HeroTab({ content, update }) {
   return (
     <>
       <FieldGroup title="Главный экран (Hero)">
+        <ImageField
+          label="Фон (картинка на главном экране)"
+          value={hero.backgroundImageUrl || hero.imageUrl}
+          onChange={(v) => update(['hero', 'backgroundImageUrl'], v)}
+          hint="Это большая картинка на фоне за текстом. Идеально: широкое фото 1600–2400px по ширине."
+        />
+        <TextField
+          label="Фокус кадра (background-position)"
+          value={hero.backgroundPosition}
+          onChange={(v) => update(['hero', 'backgroundPosition'], v)}
+          placeholder="например: 50% 35%"
+          hint="Если на телефоне обрезается неудачно — подвигайте фокус. По умолчанию 50% 50%."
+        />
+        <div className="grid sm:grid-cols-2 gap-3">
+          <TextField
+            label="Масштаб фона (0.7–1.25)"
+            value={hero.backgroundScale}
+            onChange={(v) => update(['hero', 'backgroundScale'], v)}
+            placeholder="например: 0.85"
+            hint="Если нужно «уменьшить», чтобы техника целиком влезла — ставьте 0.8–0.95."
+          />
+          <TextField
+            label="Режим фона (cover или contain)"
+            value={hero.backgroundFit}
+            onChange={(v) => update(['hero', 'backgroundFit'], v)}
+            placeholder="cover"
+            hint="cover — на весь экран с обрезкой. contain — без обрезки (могут быть поля)."
+          />
+        </div>
         <TextField
           label="Надзаголовок (eyebrow)"
           value={hero.eyebrow}
@@ -526,17 +630,12 @@ function HeroTab({ content, update }) {
           label="Галерея изображений"
           value={hero.images}
           onChange={(v) => update(['hero', 'images'], v)}
-          hint="Несколько фото — горизонтальная полоса под кнопками. Если список пуст, используется одно фото ниже."
-        />
-        <ImageField
-          label="Одно изображение (если галерея пуста)"
-          value={hero.imageUrl}
-          onChange={(v) => update(['hero', 'imageUrl'], v)}
+          hint="Несколько фото — горизонтальная полоса под кнопками (не фон)."
         />
         <TextField
-          label="Alt-текст для одного изображения"
-          value={hero.imageAlt}
-          onChange={(v) => update(['hero', 'imageAlt'], v)}
+          label="Alt-текст для фонового изображения"
+          value={hero.backgroundImageAlt || hero.imageAlt}
+          onChange={(v) => update(['hero', 'backgroundImageAlt'], v)}
         />
       </FieldGroup>
 
@@ -1354,6 +1453,60 @@ function SocialTab({ content, update }) {
         onChange={(v) => update(['social', 'youtubeText'], v)}
         rows={2}
       />
+      <ListEditor
+        label="Дополнительные соцсети"
+        hint="Добавляйте любые новые соцсети: Telegram, Facebook, LinkedIn, X и т.д."
+        items={s.items || []}
+        onChange={(v) => update(['social', 'items'], v)}
+        makeNew={() => ({
+          id: `soc-${Date.now()}`,
+          label: 'Новая соцсеть',
+          handle: '',
+          text: '',
+          url: '',
+          gradient: '',
+        })}
+        renderItem={(item, set) => (
+          <div className="space-y-3">
+            <div className="grid sm:grid-cols-2 gap-3">
+              <TextField label="ID" value={item.id} onChange={(v) => set({ ...item, id: v })} />
+              <TextField
+                label="Название соцсети"
+                value={item.label}
+                onChange={(v) => set({ ...item, label: v })}
+                placeholder="Например: Telegram"
+              />
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3">
+              <TextField
+                label="Ник/подпись"
+                value={item.handle}
+                onChange={(v) => set({ ...item, handle: v })}
+                placeholder="@maxima_kz"
+              />
+              <TextField
+                label="Ссылка"
+                value={item.url}
+                onChange={(v) => set({ ...item, url: v })}
+                placeholder="https://..."
+              />
+            </div>
+            <TextArea
+              label="Описание карточки"
+              value={item.text}
+              onChange={(v) => set({ ...item, text: v })}
+              rows={2}
+            />
+            <TextField
+              label="Градиент (необязательно, Tailwind-классы)"
+              value={item.gradient}
+              onChange={(v) => set({ ...item, gradient: v })}
+              placeholder="from-cyan-500/30 via-indigo-500/20 to-slate-300/10"
+              hint="Если пусто, применяется универсальный стиль по умолчанию."
+            />
+          </div>
+        )}
+      />
     </FieldGroup>
   )
 }
@@ -1546,6 +1699,9 @@ function PagesTab({ content, update }) {
             images: [],
             imageUrl: '',
             imageAlt: '',
+            canonicalUrl: '',
+            robots: '',
+            schemaJsonLd: '',
             ogType: '',
             articlePublishedTime: '',
             articleModifiedTime: '',
@@ -1632,6 +1788,25 @@ function PagesTab({ content, update }) {
                   />
                 </div>
                 <div className="pt-2 border-t border-white/10 space-y-3">
+                  <TextField
+                    label="Canonical URL (для этой страницы)"
+                    value={page.seo?.canonicalUrl}
+                    onChange={(v) => set({ ...page, seo: { ...(page.seo || {}), canonicalUrl: v } })}
+                    hint="Оставьте пустым для автоматического canonical по текущему URL."
+                  />
+                  <TextField
+                    label="robots (переопределение)"
+                    value={page.seo?.robots}
+                    onChange={(v) => set({ ...page, seo: { ...(page.seo || {}), robots: v } })}
+                    hint="Например: index,follow или noindex,follow. Пусто = глобальное значение."
+                  />
+                  <TextArea
+                    label="JSON-LD только для этой страницы"
+                    value={page.seo?.schemaJsonLd}
+                    onChange={(v) => set({ ...page, seo: { ...(page.seo || {}), schemaJsonLd: v } })}
+                    rows={7}
+                    hint='Вставьте JSON-объект/массив для конкретной страницы (например Service, FAQPage, Product).'
+                  />
                   <div className="text-xs text-slate-400 uppercase tracking-wide">Sitemap.xml</div>
                   <TextField
                     label="lastmod (дата изменения)"

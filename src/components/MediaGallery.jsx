@@ -48,7 +48,7 @@ function SquareMosaic({ items }) {
  * @param {object} props
  * @param {object} props.entity — объект с `images` и/или `imageUrl`
  * @param {string} [props.fallbackAlt]
- * @param {'wide' | 'square' | 'banner' | 'inline' | 'strip'} [props.variant]
+ * @param {'wide' | 'square' | 'banner' | 'inline' | 'strip' | 'contained'} [props.variant]
  * @param {string} [props.className]
  */
 export default function MediaGallery({ entity, fallbackAlt = '', variant = 'wide', className = '' }) {
@@ -117,6 +117,28 @@ export default function MediaGallery({ entity, fallbackAlt = '', variant = 'wide
             alt={im.alt}
             className="h-28 w-44 shrink-0 snap-center rounded-xl object-cover border border-white/10"
           />
+        ))}
+      </div>
+    )
+  }
+
+  if (variant === 'contained') {
+    if (items.length === 1) {
+      return (
+        <div className={`w-full h-full min-h-0 rounded-2xl border border-white/10 bg-[#0b1d3a] p-2 ${className}`}>
+          <img src={items[0].url} alt={items[0].alt} className="w-full h-full object-contain rounded-xl" />
+        </div>
+      )
+    }
+    return (
+      <div className={`grid grid-cols-1 sm:grid-cols-2 gap-3 ${className}`}>
+        {items.map((im, i) => (
+          <div
+            key={i}
+            className="rounded-2xl border border-white/10 bg-[#0b1d3a] p-2 min-h-0"
+          >
+            <img src={im.url} alt={im.alt} className="w-full h-full object-contain rounded-xl" />
+          </div>
         ))}
       </div>
     )

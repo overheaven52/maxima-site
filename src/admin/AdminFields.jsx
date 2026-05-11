@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { api } from '../api/client.js'
 
+const IMAGE_SIZE_HINT =
+  'Рекомендуемые размеры: горизонтальные 1600×900, квадратные 1200×1200, вертикальные 1080×1350. Формат JPG/PNG/WebP, вес до ~1–2 МБ.'
+
 export function TextField({ label, value, onChange, placeholder, hint }) {
   return (
     <label className="block">
@@ -53,13 +56,14 @@ export function CheckboxField({ label, value, onChange, hint }) {
 
 export function ImagesListField({ label, value, onChange, hint }) {
   const items = Array.isArray(value) ? value : []
+  const fullHint = hint ? `${hint} ${IMAGE_SIZE_HINT}` : IMAGE_SIZE_HINT
   return (
     <ListEditor
       label={label}
       items={items}
       onChange={onChange}
       makeNew={() => ({ id: `img-${Date.now()}`, url: '', alt: '' })}
-      hint={hint}
+      hint={fullHint}
       renderItem={(row, set) => (
         <div className="space-y-3">
           <ImageField label="Фото" value={row.url} onChange={(v) => set({ ...row, url: v })} />
@@ -73,6 +77,7 @@ export function ImagesListField({ label, value, onChange, hint }) {
 export function ImageField({ label, value, onChange, hint }) {
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  const fullHint = hint ? `${hint} ${IMAGE_SIZE_HINT}` : IMAGE_SIZE_HINT
 
   async function handleFile(file) {
     if (!file) return
@@ -130,7 +135,7 @@ export function ImageField({ label, value, onChange, hint }) {
         </div>
       </div>
       {error && <div className="mt-1 text-xs text-red-300">{error}</div>}
-      {hint && <div className="mt-1 text-xs text-slate-500">{hint}</div>}
+      <div className="mt-1 text-xs text-slate-500">{fullHint}</div>
     </div>
   )
 }

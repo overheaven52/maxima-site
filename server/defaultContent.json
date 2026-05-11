@@ -21,6 +21,12 @@
     "facebookAppId": "",
     "twitterSite": "",
     "twitterCreator": "",
+    "twitterCard": "",
+    "geoRegion": "",
+    "geoPlacename": "",
+    "geoPosition": "",
+    "icbm": "",
+    "schemaJsonLd": "",
     "bingSiteVerification": "",
     "hreflangAlternates": [],
     "robotsTxtExtra": "",
@@ -118,6 +124,11 @@
       "text": "Заказать бесплатный аудит",
       "href": "https://wa.me/77757147712?text=%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%B0%D1%83%D0%B4%D0%B8%D1%82"
     },
+    "backgroundImageUrl": "/hero-main.png",
+    "backgroundImageAlt": "MAXIMA — профессиональный клининг: техника и инвентарь",
+    "backgroundPosition": "50% 35%",
+    "backgroundScale": 1,
+    "backgroundFit": "cover",
     "imageUrl": "",
     "imageAlt": "MAXIMA — профессиональный клининг",
     "stats": [
@@ -224,7 +235,8 @@
         "description": "Безупречный вид входных групп, чистота лифтов и зон общего пользования, работа с заявками через мобильное приложение.",
         "accent": "Reception-management и работа с заявками через мобильное приложение",
         "ctaText": "Заказать бесплатный аудит",
-        "ctaHref": "https://wa.me/77757147712?text=%D0%90%D1%83%D0%B4%D0%B8%D1%82%20%D0%91%D0%A6"
+        "ctaHref": "https://wa.me/77757147712?text=%D0%90%D1%83%D0%B4%D0%B8%D1%82%20%D0%91%D0%A6",
+        "imageUrl": "/industry-bc.png"
       },
       {
         "id": "trc",
@@ -233,7 +245,8 @@
         "description": "Работа в ночное время, управление чистотой при пиковых нагрузках, дезинфекция фуд-кортов и санузлов.",
         "accent": "Ночной клининг и чистота зон с высокой проходимостью",
         "ctaText": "Заказать бесплатный аудит",
-        "ctaHref": "https://wa.me/77757147712?text=%D0%90%D1%83%D0%B4%D0%B8%D1%82%20%D0%A2%D0%A0%D0%A6"
+        "ctaHref": "https://wa.me/77757147712?text=%D0%90%D1%83%D0%B4%D0%B8%D1%82%20%D0%A2%D0%A0%D0%A6",
+        "imageUrl": "/industry-trc.png"
       },
       {
         "id": "logistics",
@@ -242,7 +255,8 @@
         "description": "Механизированная уборка больших площадей, очистка промышленных полов и зон разгрузки.",
         "accent": "Обеспыливание больших площадей и чистка промышленных полов",
         "ctaText": "Заказать бесплатный аудит",
-        "ctaHref": "https://wa.me/77757147712?text=%D0%90%D1%83%D0%B4%D0%B8%D1%82%20%D0%9B%D0%BE%D0%B3%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0"
+        "ctaHref": "https://wa.me/77757147712?text=%D0%90%D1%83%D0%B4%D0%B8%D1%82%20%D0%9B%D0%BE%D0%B3%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0",
+        "imageUrl": "/industry-logistics.png"
       },
       {
         "id": "industrial",
@@ -251,7 +265,8 @@
         "description": "Уборка цехов, складских площадей, обеспыливание металлоконструкций и соблюдение строгих норм ТБ.",
         "accent": "Соблюдение строгих норм охраны труда и промышленной безопасности",
         "ctaText": "Заказать бесплатный аудит",
-        "ctaHref": "https://wa.me/77757147712?text=%D0%90%D1%83%D0%B4%D0%B8%D1%82%20%D0%9F%D1%80%D0%BE%D0%BC"
+        "ctaHref": "https://wa.me/77757147712?text=%D0%90%D1%83%D0%B4%D0%B8%D1%82%20%D0%9F%D1%80%D0%BE%D0%BC",
+        "imageUrl": "/industry-industrial.png"
       }
     ]
   },

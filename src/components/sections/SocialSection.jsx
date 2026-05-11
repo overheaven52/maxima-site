@@ -4,6 +4,7 @@ export default function SocialSection() {
   const content = useContent()
   const social = content.social || {}
   const contact = content.contact || {}
+  const extraItems = Array.isArray(social.items) ? social.items : []
 
   const cards = []
   if (contact.instagramUrl) {
@@ -36,6 +37,20 @@ export default function SocialSection() {
       gradient: 'from-red-500/30 via-rose-500/20 to-slate-300/10',
     })
   }
+  extraItems.forEach((item, index) => {
+    const url = String(item?.url || '').trim()
+    if (!url) return
+    cards.push({
+      id: item?.id || `custom-${index}`,
+      label: item?.label || 'Соцсеть',
+      handle: item?.handle || '',
+      text: item?.text || '',
+      url,
+      gradient:
+        item?.gradient ||
+        'from-cyan-500/30 via-indigo-500/20 to-slate-300/10',
+    })
+  })
 
   if (cards.length === 0) return null
 

@@ -13,7 +13,7 @@ export default function IndustriesSection() {
   )
 
   return (
-    <section id="industries" className="py-20 md:py-28">
+    <section id="industries" className="py-12 md:py-14">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-cyan-300/80">
@@ -27,18 +27,19 @@ export default function IndustriesSection() {
 
         {items.length > 0 && (
           hasRich ? (
-            <div className="mt-12 grid md:grid-cols-2 gap-5">
+            <div className="mt-8 grid md:grid-cols-2 xl:grid-cols-4 gap-4">
               {items.map((i) => (
                 <article
                   key={i.id}
-                  className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 md:p-7 hover:border-cyan-400/40 transition flex flex-col overflow-hidden"
+                  className="rounded-3xl border border-white/10 bg-white/[0.03] p-5 md:p-5 hover:border-cyan-400/40 transition flex flex-col overflow-hidden"
                 >
                   {hasContentImages(i) && (
-                    <div className="-mx-6 -mt-6 mb-5 md:-mx-7 md:-mt-7 bg-white/5 p-1">
+                    <div className="-mx-5 -mt-5 mb-4 overflow-hidden">
                       <MediaGallery
                         entity={i}
                         fallbackAlt={i.imageAlt?.trim() || i.label || ''}
                         variant="wide"
+                        className="aspect-[4/3]"
                       />
                     </div>
                   )}

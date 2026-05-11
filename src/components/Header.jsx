@@ -72,14 +72,14 @@ export default function Header() {
           onAfterNavigate={() => setMobileOpen(false)}
         >
           {header.logoImageUrl ? (
-            <span className="relative h-10 w-10 sm:h-11 sm:w-11 rounded-xl overflow-hidden border border-cyan-400/30 bg-white shadow-[0_2px_14px_rgba(0,0,0,.28)] ring-1 ring-white/15 shrink-0 grid place-items-center">
+            <span className="relative h-12 w-28 sm:h-14 sm:w-36 shrink-0">
               <img
                 src={header.logoImageUrl}
                 alt={
                   header.logoImageAlt?.trim() ||
                   `${(header.logoText || 'MAXIMA').trim()} — логотип`
                 }
-                className="h-full w-full object-cover object-center scale-[1.08]"
+                className="h-full w-full object-contain object-left"
                 decoding="async"
               />
             </span>
@@ -88,16 +88,6 @@ export default function Header() {
               {(header.logoText || 'M').trim().charAt(0).toUpperCase()}
             </span>
           )}
-          <span className="flex flex-col min-w-0">
-            <span className="text-base md:text-lg font-bold tracking-wide truncate">
-              {header.logoText || 'MAXIMA'}
-            </span>
-            {header.logoSubtitle && (
-              <span className="text-[11px] md:text-xs text-cyan-300/80 truncate">
-                {header.logoSubtitle}
-              </span>
-            )}
-          </span>
         </NavItem>
 
         <nav className="hidden md:flex items-center gap-7">
