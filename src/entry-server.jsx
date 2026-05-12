@@ -2,6 +2,7 @@ import { renderToString } from 'react-dom/server'
 import App from './App.jsx'
 import { ContentProvider } from './content/ContentContext.jsx'
 import { PathProvider } from './content/PathContext.jsx'
+import { LocaleProvider } from './i18n/LocaleContext.jsx'
 
 function normalize(p) {
   const x = (p || '/').replace(/\/+$/, '')
@@ -22,9 +23,11 @@ export function render(url, content) {
 
   const html = renderToString(
     <ContentProvider initial={content}>
-      <PathProvider initial={pathname}>
-        <App />
-      </PathProvider>
+      <LocaleProvider>
+        <PathProvider initial={pathname}>
+          <App />
+        </PathProvider>
+      </LocaleProvider>
     </ContentProvider>,
   )
 

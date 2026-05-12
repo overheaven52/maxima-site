@@ -1,5 +1,5 @@
 import { useContent } from '../../content/ContentContext.jsx'
-
+import { useUiString } from '../../i18n/LocaleContext.jsx'
 import { normalizeContactLinks } from '../../utils/contactLinks.js'
 
 
@@ -13,7 +13,7 @@ function isWhatsAppHref(href) {
 
 
 function LinkCard({ item }) {
-
+  const contactFallback = useUiString('contactFallback')
   const isWa = isWhatsAppHref(item.href)
 
   const isExternal = /^https?:\/\//i.test(item.href)
@@ -24,7 +24,9 @@ function LinkCard({ item }) {
 
       {item.icon && <div className="text-2xl mb-1">{item.icon}</div>}
 
-      <div className="text-xs uppercase tracking-wider text-slate-400">{item.label || 'Контакт'}</div>
+      <div className="text-xs uppercase tracking-wider text-slate-400">
+        {item.label || contactFallback}
+      </div>
 
       <div
 
@@ -93,6 +95,13 @@ function LinkCard({ item }) {
 
 
 export default function ContactSection() {
+  const contactEyebrow = useUiString('contactSectionEyebrow')
+  const contactTitle = useUiString('contactSectionTitle')
+  const contactHoursFallback = useUiString('contactHoursFallback')
+  const labelPhone = useUiString('labelPhone')
+  const labelEmail = useUiString('labelEmail')
+  const labelAddress = useUiString('labelAddress')
+  const whatsappCta = useUiString('whatsappCta')
 
   const content = useContent()
 
@@ -112,15 +121,15 @@ export default function ContactSection() {
 
           <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-cyan-300/80">
 
-            Связаться с нами
+            {contactEyebrow}
 
           </p>
 
-          <h2 className="mt-3 text-3xl md:text-5xl font-bold">Работаем 24/7 во всех регионах</h2>
+          <h2 className="mt-3 text-3xl md:text-5xl font-bold">{contactTitle}</h2>
 
           <p className="mt-4 text-slate-300/90 max-w-2xl mx-auto">
 
-            {contact.workingHours || 'Принимаем заказы в любое время суток.'}
+            {contact.workingHours || contactHoursFallback}
 
           </p>
 
@@ -150,7 +159,7 @@ export default function ContactSection() {
 
                   <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
 
-                    <div className="text-xs uppercase tracking-wider text-slate-400">Телефон</div>
+                    <div className="text-xs uppercase tracking-wider text-slate-400">{labelPhone}</div>
 
                     <a
 
@@ -172,7 +181,7 @@ export default function ContactSection() {
 
                   <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
 
-                    <div className="text-xs uppercase tracking-wider text-slate-400">Email</div>
+                    <div className="text-xs uppercase tracking-wider text-slate-400">{labelEmail}</div>
 
                     <a
 
@@ -194,7 +203,7 @@ export default function ContactSection() {
 
                   <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
 
-                    <div className="text-xs uppercase tracking-wider text-slate-400">Адрес</div>
+                    <div className="text-xs uppercase tracking-wider text-slate-400">{labelAddress}</div>
 
                     <div className="mt-1 text-base text-slate-200">{contact.address}</div>
 
@@ -218,7 +227,7 @@ export default function ContactSection() {
 
                     <div className="text-xs uppercase tracking-wider text-cyan-300/80">WhatsApp</div>
 
-                    <div className="mt-1 text-lg font-semibold text-cyan-200">Написать нам →</div>
+                    <div className="mt-1 text-lg font-semibold text-cyan-200">{whatsappCta}</div>
 
                   </a>
 

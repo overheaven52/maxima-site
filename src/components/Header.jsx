@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useContent } from '../content/ContentContext.jsx'
 import { usePath } from '../content/PathContext.jsx'
+import { useLocale, useUiString } from '../i18n/LocaleContext.jsx'
 
 function normalizePath(p) {
   const x = (p || '/').replace(/\/+$/, '')
@@ -16,11 +17,49 @@ function isClientRoute(href) {
   )
 }
 
+function LanguageToggle({ className = '' }) {
+  const { locale, setLocale } = useLocale()
+  const aria = useUiString('languageGroup')
+  return (
+    <div
+      className={`inline-flex rounded-xl border border-white/10 p-0.5 text-xs font-semibold ${className}`.trim()}
+      role="group"
+      aria-label={aria}
+    >
+      <button
+        type="button"
+        onClick={() => setLocale('ru')}
+        className={`min-h-9 min-w-[2.5rem] rounded-lg px-2 transition touch-manip ${
+          locale === 'ru'
+            ? 'bg-cyan-500/25 text-cyan-100 border border-cyan-400/35'
+            : 'text-slate-400 hover:text-slate-200'
+        }`}
+      >
+        RU
+      </button>
+      <button
+        type="button"
+        onClick={() => setLocale('kk')}
+        className={`min-h-9 min-w-[2.5rem] rounded-lg px-2 transition touch-manip ${
+          locale === 'kk'
+            ? 'bg-cyan-500/25 text-cyan-100 border border-cyan-400/35'
+            : 'text-slate-400 hover:text-slate-200'
+        }`}
+      >
+        ҚАЗ
+      </button>
+    </div>
+  )
+}
+
 export default function Header() {
   const content = useContent()
   const header = content.header || {}
   const [mobileOpen, setMobileOpen] = useState(false)
   const { path, navigate } = usePath()
+  const menuOpenLabel = useUiString('openMenu')
+  const menuCloseLabel = useUiString('closeMenu')
+  const ctaFallback = useUiString('ctaFallback')
 
   const links = header.navLinks || []
 
@@ -90,7 +129,7 @@ export default function Header() {
           )}
         </NavItem>
 
-        <nav className="hidden md:flex items-center gap-7">
+        <nav className="hidden md:flex items-center gap-7 flex-1 justify-center min-w-0">
           {links.map((l) => (
             <NavItem
               key={l.id}
@@ -102,28 +141,34 @@ export default function Header() {
           ))}
         </nav>
 
-        <NavItem
-          href={header.ctaButtonHref || '/contact'}
-          className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/40 text-cyan-200 text-sm font-medium transition"
-        >
-          {header.ctaButtonText || 'Связаться'}
-        </NavItem>
+        <div className="hidden md:flex items-center gap-3 shrink-0">
+          <LanguageToggle />
+          <NavItem
+            href={header.ctaButtonHref || '/contact'}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/40 text-cyan-200 text-sm font-medium transition"
+          >
+            {header.ctaButtonText || ctaFallback}
+          </NavItem>
+        </div>
 
-        <button
-          type="button"
-          onClick={() => setMobileOpen((v) => !v)}
-          className="md:hidden grid place-items-center min-w-11 min-h-11 rounded-lg border border-white/10 text-slate-200 touch-manip"
-          aria-expanded={mobileOpen}
-          aria-label={mobileOpen ? 'Закрыть меню' : 'Открыть меню'}
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            {mobileOpen ? (
-              <path d="M6 6l12 12M6 18L18 6" />
-            ) : (
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
+        <div className="flex md:hidden items-center gap-2 shrink-0">
+          <LanguageToggle />
+          <button
+            type="button"
+            onClick={() => setMobileOpen((v) => !v)}
+            className="grid place-items-center min-w-11 min-h-11 rounded-lg border border-white/10 text-slate-200 touch-manip"
+            aria-expanded={mobileOpen}
+            aria-label={mobileOpen ? menuCloseLabel : menuOpenLabel}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              {mobileOpen ? (
+                <path d="M6 6l12 12M6 18L18 6" />
+              ) : (
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {mobileOpen && (
@@ -144,7 +189,7 @@ export default function Header() {
               onAfterNavigate={() => setMobileOpen(false)}
               className="mt-2 min-h-12 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-200 font-medium text-base touch-manip"
             >
-              {header.ctaButtonText || 'Связаться'}
+              {header.ctaButtonText || ctaFallback}
             </NavItem>
           </nav>
         </div>

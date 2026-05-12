@@ -1,9 +1,11 @@
 import { useContent } from '../../content/ContentContext.jsx'
+import { useUiString } from '../../i18n/LocaleContext.jsx'
 import { hasContentImages } from '../../utils/contentImages.js'
 import HomeHeroLeadInner from './HomeHeroLeadInner.jsx'
 
 /** Заголовок главной («Безупречная чистота…»), подзаголовок и CTA — под блоком аренды; на lg+ дублируется в герое слева и скрыт здесь. */
 export default function HomeHeroLeadSection() {
+  const heroLeadAria = useUiString('heroLeadAria')
   const hero = useContent().hero || {}
 
   const hasText =
@@ -19,7 +21,7 @@ export default function HomeHeroLeadSection() {
     <section
       id="hero-lead"
       className="relative z-10 scroll-mt-20 border-t border-white/10 bg-gradient-to-b from-[#06152d] to-[#050f24] py-8 sm:py-10 md:py-12 lg:hidden"
-      aria-label="Главное предложение"
+      aria-label={heroLeadAria}
     >
       <div className="pointer-events-none absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(34,211,238,0.12),transparent_55%)]" />
       <div className="relative max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">

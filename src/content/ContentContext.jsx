@@ -1,4 +1,14 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react'
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+} from 'react'
+import { useLocale } from '../i18n/LocaleContext.jsx'
+import kkOverrides from '../i18n/kk.json'
+import { mergeLocalized } from '../i18n/mergeLocalized.js'
 
 const ContentContext = createContext({ content: {}, refresh: () => {} })
 
@@ -29,7 +39,15 @@ export function ContentProvider({ initial = {}, children }) {
 }
 
 export function useContent() {
-  return useContext(ContentContext).content
+  const ctx = useContext(ContentContext)
+  const { locale } = useLocale()
+  return useMemo(
+    () =>
+      locale === 'kk'
+        ? mergeLocalized(ctx.content, kkOverrides)
+        : ctx.content,
+    [ctx.content, locale],
+  )
 }
 
 export function useContentApi() {

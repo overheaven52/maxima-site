@@ -4,6 +4,7 @@ import Footer from '../components/Footer.jsx'
 import SectionRenderer from '../components/SectionRenderer.jsx'
 import HomeHeroLeadSection from '../components/sections/HomeHeroLeadSection.jsx'
 import { usePath } from '../content/PathContext.jsx'
+import { useUiString } from '../i18n/LocaleContext.jsx'
 
 function normalizeSlug(s) {
   const x = (s || '/').replace(/\/+$/, '')
@@ -15,6 +16,8 @@ export default function PageView({ page }) {
   const { navigate } = usePath()
   const slug = normalizeSlug(page?.slug)
   const isHome = slug === '/'
+  const backHome = useUiString('backHome')
+  const nowLabel = useUiString('nowLabel')
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -37,14 +40,14 @@ export default function PageView({ page }) {
               <span className="text-base leading-none" aria-hidden>
                 ←
               </span>
-              На главную
+              {backHome}
             </button>
             <span
               className="hidden sm:inline h-4 w-px bg-white/15"
               aria-hidden
             />
             <span className="text-sm text-slate-400 min-w-0 flex-1 basis-full sm:basis-auto">
-              <span className="text-slate-500">Сейчас:</span>{' '}
+              <span className="text-slate-500">{nowLabel}</span>{' '}
               <span className="text-slate-200 font-medium break-words">{page.title || slug}</span>
             </span>
           </div>

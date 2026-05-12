@@ -1,7 +1,10 @@
 import { useContent } from '../content/ContentContext.jsx'
+import { useUiString } from '../i18n/LocaleContext.jsx'
 import { normalizeContactLinks } from '../utils/contactLinks.js'
 
 export default function Footer() {
+  const phonePrefix = useUiString('phonePrefix')
+  const privacyLabel = useUiString('privacy')
   const content = useContent()
   const footer = content.footer || {}
   const contact = content.contact || {}
@@ -44,7 +47,11 @@ export default function Footer() {
             </>
           ) : (
             <>
-              {contact.phone && <div>Тел.: {contact.phone}</div>}
+              {contact.phone && (
+                <div>
+                  {phonePrefix} {contact.phone}
+                </div>
+              )}
               {contact.email && <div>Email: {contact.email}</div>}
               {contact.address && <div>{contact.address}</div>}
             </>
@@ -80,7 +87,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             {footer.showPrivacyLink && (
               <a href={footer.privacyHref} className="inline-flex min-h-10 items-center py-1 hover:text-cyan-300 touch-manip">
-                Политика конфиденциальности
+                {privacyLabel}
               </a>
             )}
           </div>
