@@ -89,6 +89,39 @@ body {
   );
 }
 
+/* Подсказка «нажмите» на главной у инфографики клининга */
+@keyframes heroTapNudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.hero-tap-hint {
+  animation: heroTapNudge 2.2s ease-in-out infinite;
+}
+
+@keyframes heroLinkGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(34, 211, 238, 0.22),
+      0 12px 40px -16px rgba(0, 0, 0, 0.45);
+  }
+  50% {
+    box-shadow:
+      0 0 0 2px rgba(34, 211, 238, 0.38),
+      0 16px 48px -12px rgba(34, 211, 238, 0.2);
+  }
+}
+
+.hero-cleaning-link-pulse {
+  animation: heroLinkGlow 3s ease-in-out infinite;
+}
+
 .neon-text {
   background: linear-gradient(100deg, #a5f3fc 0%, #fff 38%, #67e8f9 72%, #cffafe 100%);
   background-size: 180% 100%;

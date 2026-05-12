@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { useContent } from '../../content/ContentContext.jsx'
 import MediaGallery from '../MediaGallery.jsx'
+import HeroStatsStrip from './HeroStatsStrip.jsx'
 import { hasContentImages } from '../../utils/contentImages.js'
 
 /** Список тарифов из prices[] или запасной вариант pricePerDay */
@@ -72,53 +73,62 @@ export default function RentSection() {
   }
 
   return (
-    <section id="rent" className="relative pt-10 pb-20 md:pt-14 md:pb-28">
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6">
+    <section
+      id="rent"
+      className="relative scroll-mt-16 sm:scroll-mt-20 pt-0 pb-10 sm:pt-8 sm:pb-20 md:pt-12 md:pb-28"
+    >
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold">{rent.heading}</h2>
+          <h2 className="text-xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight sm:leading-[1.1] tracking-tight text-white">
+            {rent.heading}
+          </h2>
           {rent.description && (
-            <p className="mt-4 text-slate-300/90">{rent.description}</p>
+            <p className="mt-1.5 sm:mt-4 text-xs sm:text-base md:text-lg text-slate-200/90 leading-snug sm:leading-relaxed max-w-2xl mx-auto line-clamp-2 sm:line-clamp-none">
+              {rent.description}
+            </p>
           )}
         </div>
 
         {categories.length > 0 && !openCategoryId && (
           <>
-            <p className="mt-12 text-center text-xs md:text-sm uppercase tracking-[0.25em] text-cyan-300/80">
+            <p className="mt-2.5 sm:mt-9 md:mt-12 text-center text-[10px] sm:text-xs md:text-sm uppercase tracking-[0.2em] sm:tracking-[0.25em] text-cyan-300 font-medium">
               {eyebrow}
             </p>
-            <div className="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
+            {/* Мобилка: низкие карточки 3:2, узкие зазоры — 2×2 влезает в экран вместе с героем */}
+            <div className="mt-2 sm:mt-6 md:mt-8 grid grid-cols-2 lg:grid-cols-4 gap-1.5 sm:gap-4 md:gap-6">
               {categories.map((c) => (
                 <button
                   key={c.id}
                   type="button"
                   onClick={() => setOpenCategoryId(c.id)}
-                  className="group relative aspect-square rounded-2xl overflow-hidden border text-left transition-all duration-200 border-white/10 hover:border-cyan-400/50 hover:shadow-[0_0_28px_rgba(34,211,238,0.12)] hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06152d] touch-manip active:scale-[0.98]"
+                  className="group relative aspect-[3/2] sm:aspect-[6/5] md:aspect-square rounded-lg sm:rounded-2xl overflow-hidden border text-left transition-all duration-200 border-white/10 hover:border-cyan-400/50 hover:shadow-[0_0_28px_rgba(34,211,238,0.12)] sm:hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06152d] touch-manip active:scale-[0.98]"
                 >
                   <div className="absolute inset-0 bg-[#0b1d3a] overflow-hidden">
                     {hasContentImages(c) ? (
-                      <div className="h-full w-full transition duration-300 group-hover:scale-105 [&_img]:transition [&_img]:duration-300 group-hover:[&_img]:scale-105">
+                      <div className="h-full w-full transition duration-300 sm:group-hover:scale-105 [&_img]:transition [&_img]:duration-300 sm:group-hover:[&_img]:scale-105">
                         <MediaGallery entity={c} fallbackAlt={c.title} variant="square" />
                       </div>
                     ) : (
-                      <div className="h-full w-full grid place-items-center text-5xl bg-gradient-to-br from-[#0b1d3a] to-[#06152d]">
+                      <div className="h-full w-full grid place-items-center text-2xl sm:text-5xl bg-gradient-to-br from-[#0b1d3a] to-[#06152d]">
                         🛠️
                       </div>
                     )}
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-[#06152d]/95 via-[#06152d]/35 to-transparent" />
-                  <div className="absolute top-3 left-3">
-                    <span className="inline-block text-[10px] sm:text-xs uppercase tracking-wider px-2 py-1 rounded-md bg-cyan-400/90 text-[#06152d] font-semibold">
+                  <div className="absolute top-1 left-1 sm:top-3 sm:left-3">
+                    <span className="inline-block text-[8px] sm:text-[10px] md:text-xs uppercase tracking-wide px-1 py-px sm:px-2 sm:py-1 rounded sm:rounded-md bg-cyan-400/90 text-[#06152d] font-semibold">
                       {badgeText}
                     </span>
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
-                    <h3 className="text-sm sm:text-base md:text-lg font-bold text-white leading-snug drop-shadow-md">
+                  <div className="absolute bottom-0 left-0 right-0 px-1.5 py-1 sm:p-3 md:p-4">
+                    <h3 className="text-[10px] sm:text-sm md:text-lg font-bold text-white leading-tight sm:leading-snug drop-shadow-md line-clamp-2 sm:line-clamp-none">
                       {c.title}
                     </h3>
                   </div>
                 </button>
               ))}
             </div>
+            <HeroStatsStrip className="mt-4 sm:mt-10 md:mt-12" compactMobile />
           </>
         )}
 

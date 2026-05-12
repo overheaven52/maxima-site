@@ -101,7 +101,7 @@
     "navLinks": [
       { "id": "about", "label": "О компании", "href": "/about" },
       { "id": "services", "label": "Услуги", "href": "/cleaning" },
-      { "id": "industries", "label": "Отрасли", "href": "/industries" },
+      { "id": "industries", "label": "Клининг", "href": "/industries" },
       { "id": "technology", "label": "Технологии", "href": "/technology" },
       { "id": "equipment", "label": "Оборудование", "href": "/equipment" },
       { "id": "rent", "label": "Аренда техники", "href": "/#rent" },
@@ -121,14 +121,18 @@
       "href": "https://wa.me/77757147712?text=%D0%A0%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D0%B9%D1%82%D0%B5%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C%20%D1%83%D0%B1%D0%BE%D1%80%D0%BA%D0%B8"
     },
     "secondaryButton": {
-      "text": "Заказать бесплатный аудит",
-      "href": "https://wa.me/77757147712?text=%D0%97%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%B0%D1%83%D0%B4%D0%B8%D1%82"
+      "text": "",
+      "href": ""
     },
     "backgroundImageUrl": "/hero-main.png",
-    "backgroundImageAlt": "MAXIMA — профессиональный клининг: техника и инвентарь",
-    "backgroundPosition": "50% 35%",
+    "backgroundImageAlt": "Инфографика услуг MAXIMA: уборка полов, пылесосение, мойка окон, вывоз мусора, комплексная и санитарная уборка, дезинфекция",
+    "backgroundPosition": "50% 50%",
     "backgroundScale": 1,
-    "backgroundFit": "cover",
+    "backgroundFit": "contain",
+    "backgroundImageLinkHref": "/industries",
+    "backgroundImageLinkHint": "Открыть раздел «Клининг»",
+    "backgroundImageLinkDescription": "Направления по типам объектов, перечень услуг и ориентиры по ценам — нажмите на схему или кнопку ниже.",
+    "backgroundImageLinkLabel": "Перейти в раздел Клининг — услуги, направления и цены",
     "imageUrl": "",
     "imageAlt": "MAXIMA — профессиональный клининг",
     "stats": [
@@ -225,8 +229,8 @@
     ]
   },
   "industries": {
-    "heading": "Отраслевые решения",
-    "description": "Знаем специфику каждого сегмента и подбираем под него технологии, режим работы и инвентарь.",
+    "heading": "Клининг",
+    "description": "Решения под тип объекта: технологии, режим работы и инвентарь.",
     "items": [
       {
         "id": "bc",
@@ -234,7 +238,9 @@
         "label": "Бизнес-центры (Класс А, В)",
         "description": "Безупречный вид входных групп, чистота лифтов и зон общего пользования, работа с заявками через мобильное приложение.",
         "accent": "Reception-management и работа с заявками через мобильное приложение",
-        "ctaText": "Заказать бесплатный аудит",
+        "price": "",
+        "priceNote": "",
+        "ctaText": "Заказать",
         "ctaHref": "https://wa.me/77757147712?text=%D0%90%D1%83%D0%B4%D0%B8%D1%82%20%D0%91%D0%A6",
         "imageUrl": "/industry-bc.png"
       },
@@ -244,7 +250,9 @@
         "label": "ТРЦ и Ритейл (24/7)",
         "description": "Работа в ночное время, управление чистотой при пиковых нагрузках, дезинфекция фуд-кортов и санузлов.",
         "accent": "Ночной клининг и чистота зон с высокой проходимостью",
-        "ctaText": "Заказать бесплатный аудит",
+        "price": "",
+        "priceNote": "",
+        "ctaText": "Заказать",
         "ctaHref": "https://wa.me/77757147712?text=%D0%90%D1%83%D0%B4%D0%B8%D1%82%20%D0%A2%D0%A0%D0%A6",
         "imageUrl": "/industry-trc.png"
       },
@@ -254,7 +262,9 @@
         "label": "Логистические центры",
         "description": "Механизированная уборка больших площадей, очистка промышленных полов и зон разгрузки.",
         "accent": "Обеспыливание больших площадей и чистка промышленных полов",
-        "ctaText": "Заказать бесплатный аудит",
+        "price": "",
+        "priceNote": "",
+        "ctaText": "Заказать",
         "ctaHref": "https://wa.me/77757147712?text=%D0%90%D1%83%D0%B4%D0%B8%D1%82%20%D0%9B%D0%BE%D0%B3%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0",
         "imageUrl": "/industry-logistics.png"
       },
@@ -264,11 +274,18 @@
         "label": "Промышленные объекты",
         "description": "Уборка цехов, складских площадей, обеспыливание металлоконструкций и соблюдение строгих норм ТБ.",
         "accent": "Соблюдение строгих норм охраны труда и промышленной безопасности",
-        "ctaText": "Заказать бесплатный аудит",
+        "price": "",
+        "priceNote": "",
+        "ctaText": "Заказать",
         "ctaHref": "https://wa.me/77757147712?text=%D0%90%D1%83%D0%B4%D0%B8%D1%82%20%D0%9F%D1%80%D0%BE%D0%BC",
         "imageUrl": "/industry-industrial.png"
       }
-    ]
+    ],
+    "partnersStrip": {
+      "heading": "С кем мы сотрудничаем",
+      "subtitle": "",
+      "images": []
+    }
   },
   "technology": {
     "eyebrow": "Технологии и стандарты",
@@ -658,10 +675,10 @@
     {
       "id": "industries",
       "slug": "/industries",
-      "title": "Отрасли",
+      "title": "Клининг",
       "seo": {
-        "title": "Клининг для отраслей — MAXIMA",
-        "description": "Отраслевые решения для ритейла, логистики, HoReCa и промышленности.",
+        "title": "Клининг для объектов — MAXIMA",
+        "description": "Клининг для бизнес-центров, ТРЦ, логистики и промышленности: технологии, режим работы и инвентарь под тип объекта.",
         "keywords": "",
         "imageUrl": "",
         "imageAlt": "",

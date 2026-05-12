@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import SectionRenderer from '../components/SectionRenderer.jsx'
+import HomeHeroLeadSection from '../components/sections/HomeHeroLeadSection.jsx'
 import { usePath } from '../content/PathContext.jsx'
 
 function normalizeSlug(s) {
@@ -65,6 +66,7 @@ export default function PageView({ page }) {
               {blocks.map((block) => (
                 <SectionRenderer key={block.id} block={block} />
               ))}
+              <HomeHeroLeadSection />
             </div>
           </div>
         ) : (

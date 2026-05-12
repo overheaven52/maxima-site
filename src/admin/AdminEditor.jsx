@@ -41,7 +41,7 @@ const TABS = [
   { id: 'hero', label: 'Hero' },
   { id: 'about', label: 'О компании' },
   { id: 'cleaning', label: 'Услуги' },
-  { id: 'industries', label: 'Отрасли' },
+  { id: 'industries', label: 'Клининг (раздел)' },
   { id: 'technology', label: 'Технологии' },
   { id: 'equipment', label: 'Оборудование' },
   { id: 'geography', label: 'География' },
@@ -637,6 +637,39 @@ function HeroTab({ content, update }) {
           value={hero.backgroundImageAlt || hero.imageAlt}
           onChange={(v) => update(['hero', 'backgroundImageAlt'], v)}
         />
+        <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4 space-y-3">
+          <p className="text-sm text-slate-300 font-medium">Клик по картинке на главной</p>
+          <p className="text-xs text-slate-500">
+            Инфографика ведёт в раздел Клининг. Подпись на картинке и hover подсказывают, что блок можно нажать.
+          </p>
+          <TextField
+            label="Ссылка при клике"
+            value={hero.backgroundImageLinkHref ?? '/industries'}
+            onChange={(v) => update(['hero', 'backgroundImageLinkHref'], v)}
+            placeholder="/industries"
+          />
+          <TextField
+            label="Короткая подпись на картинке"
+            value={hero.backgroundImageLinkHint ?? ''}
+            onChange={(v) => update(['hero', 'backgroundImageLinkHint'], v)}
+            placeholder="Открыть раздел «Клининг»"
+            hint="Заголовок у схемы: куда ведёт клик"
+          />
+          <TextArea
+            label="Описание под схемой (1–2 предложения)"
+            value={hero.backgroundImageLinkDescription ?? ''}
+            onChange={(v) => update(['hero', 'backgroundImageLinkDescription'], v)}
+            rows={2}
+            placeholder="Направления клининга, услуги и ориентиры по ценам"
+            hint="Показывается на главной рядом со схемой, чтобы было понятно, зачем нажимать"
+          />
+          <TextField
+            label="Описание для доступности (aria-label)"
+            value={hero.backgroundImageLinkLabel ?? ''}
+            onChange={(v) => update(['hero', 'backgroundImageLinkLabel'], v)}
+            placeholder="Перейти в раздел Клининг"
+          />
+        </div>
       </FieldGroup>
 
       <FieldGroup title="Кнопки">
@@ -887,10 +920,12 @@ function CleaningTab({ content, update }) {
 
 function IndustriesTab({ content, update }) {
   const ind = content.industries || {}
+  const partners = ind.partnersStrip || {}
   return (
+    <>
     <FieldGroup
-      title="Отраслевые решения"
-      description="Карточки секторов с описанием и кнопкой. Если оставить только iconnabel — будет компактная сетка."
+      title="Клининг"
+      description="Карточки одного размера в сетке: заголовок, описание, цена, кнопка. Нажмите «+ добавить» в списке карточек, чтобы добавить ещё блок с теми же полями. В «Галерея фото» загрузите несколько снимков — на сайте они листаются маленькими стрелками по краям; стрелки появляются только если в карточке больше одного фото. Одно фото можно задать и через «Одно фото», если галерея пуста."
     >
       <TextField label="Заголовок" value={ind.heading} onChange={(v) => update(['industries', 'heading'], v)} />
       <TextArea
@@ -900,19 +935,22 @@ function IndustriesTab({ content, update }) {
         rows={3}
       />
       <ListEditor
-        label="Сектора"
+        label="Карточки направлений (блоки клининга)"
+        hint="Каждая карточка — отдельный блок: несколько фото с листанием или одно фото, текст, цены, кнопка. Порядок — стрелками ↑ ↓."
         items={ind.items || []}
         onChange={(v) => update(['industries', 'items'], v)}
         makeNew={() => ({
           id: `ind-${Date.now()}`,
           icon: '',
-          label: 'Новый сектор',
+          label: 'Новое направление',
           images: [],
           imageUrl: '',
           imageAlt: '',
           description: '',
           accent: '',
-          ctaText: 'Заказать бесплатный аудит',
+          price: '',
+          priceNote: '',
+          ctaText: 'Заказать',
           ctaHref: '',
         })}
         renderItem={(item, set) => (
@@ -925,16 +963,16 @@ function IndustriesTab({ content, update }) {
                 onChange={(v) => set({ ...item, icon: v })}
               />
               <TextField
-                label="Название сектора"
+                label="Название направления"
                 value={item.label}
                 onChange={(v) => set({ ...item, label: v })}
               />
             </div>
             <ImagesListField
-              label="Галерея фото"
+              label="Галерея фото (несколько — на сайте стрелки ‹ ›)"
               value={item.images}
               onChange={(v) => set({ ...item, images: v })}
-              hint="Несколько фото в карточке. Если список пуст — одно фото ниже."
+              hint="Два и больше фото: в блоке появятся маленькие стрелки для перелистывания. Один снимок — стрелок нет."
             />
             <ImageField
               label="Одно фото (если галерея пуста)"
@@ -960,6 +998,20 @@ function IndustriesTab({ content, update }) {
             />
             <div className="grid sm:grid-cols-2 gap-3">
               <TextField
+                label="Цена / тариф"
+                value={item.price ?? ''}
+                onChange={(v) => set({ ...item, price: v })}
+                hint="Например: от 15 000 ₸/м² или по запросу"
+              />
+              <TextField
+                label="Пояснение к цене"
+                value={item.priceNote ?? ''}
+                onChange={(v) => set({ ...item, priceNote: v })}
+                hint="Мелким текстом: за что цена, НДС, мин. заказ"
+              />
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3">
+              <TextField
                 label="Текст кнопки"
                 value={item.ctaText}
                 onChange={(v) => set({ ...item, ctaText: v })}
@@ -974,6 +1026,31 @@ function IndustriesTab({ content, update }) {
         )}
       />
     </FieldGroup>
+
+    <FieldGroup
+      title="Панель «С кем сотрудничаем»"
+      description="Отдельный блок под карточками клининга: горизонтальная полоса с фото или логотипами партнёров. Листание влево-вправо (мышь, тачпад, палец на телефоне). Заполните галерею ниже — панель появится на сайте только если добавлен хотя бы один снимок."
+    >
+      <TextField
+        label="Заголовок панели"
+        value={partners.heading ?? ''}
+        onChange={(v) => update(['industries', 'partnersStrip', 'heading'], v)}
+        placeholder="С кем мы сотрудничаем"
+      />
+      <TextArea
+        label="Подзаголовок (необязательно)"
+        value={partners.subtitle ?? ''}
+        onChange={(v) => update(['industries', 'partnersStrip', 'subtitle'], v)}
+        rows={2}
+      />
+      <ImagesListField
+        label="Фото / логотипы (листающаяся полоса)"
+        value={partners.images}
+        onChange={(v) => update(['industries', 'partnersStrip', 'images'], v)}
+        hint="Несколько картинок — полоса прокручивается. Рекомендуем одинаковую высоту или квадратные логотипы для ровного ряда."
+      />
+    </FieldGroup>
+    </>
   )
 }
 
@@ -1645,7 +1722,7 @@ const BLOCK_TYPES = [
   { id: 'hero', label: 'Hero (главный экран)' },
   { id: 'about', label: 'О компании' },
   { id: 'cleaning', label: 'Услуги (категории)' },
-  { id: 'industries', label: 'Отраслевые решения' },
+  { id: 'industries', label: 'Клининг (карточки)' },
   { id: 'technology', label: 'Технологии и стандарты' },
   { id: 'equipment', label: 'Оборудование' },
   { id: 'geography', label: 'География и гарантии' },
