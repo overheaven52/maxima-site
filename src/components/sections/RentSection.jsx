@@ -1,11 +1,13 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { useContent } from '../../content/ContentContext.jsx'
+import { useLocale, UI_STRINGS } from '../../i18n/LocaleContext.jsx'
 import MediaGallery from '../MediaGallery.jsx'
+import RentMachineDetailModal from '../RentMachineDetailModal.jsx'
 import HeroStatsStrip from './HeroStatsStrip.jsx'
 import { hasContentImages } from '../../utils/contentImages.js'
 
 /** Список тарифов из prices[] или запасной вариант pricePerDay */
-function getRentMachinePriceRows(m) {
+function getRentMachinePriceRows(m, tariffFallback, perDayLabel) {
   const raw = m?.prices
   if (Array.isArray(raw) && raw.length > 0) {
     const rows = []
@@ -17,26 +19,29 @@ function getRentMachinePriceRows(m) {
       if (!label && !value) continue
       rows.push({
         id: String(p.id || `p-${i}`),
-        label: label || 'Тариф',
+        label: label || tariffFallback,
         value: value || '—',
       })
     }
     if (rows.length > 0) return rows
   }
   const legacy = String(m?.pricePerDay ?? '').trim()
-  if (legacy) return [{ id: 'per-day', label: 'За сутки', value: legacy }]
+  if (legacy) return [{ id: 'per-day', label: perDayLabel, value: legacy }]
   return []
 }
 
 export default function RentSection() {
+  const { locale } = useLocale()
+  const ui = useMemo(() => UI_STRINGS[locale] || UI_STRINGS.ru, [locale])
   const content = useContent()
   const rent = content.rent || {}
   const contact = content.contact || {}
   const categories = rent.categories || []
-  const eyebrow = rent.categoriesEyebrow || 'Главные разделы'
-  const badgeText = rent.categoryBadge || 'Аренда'
+  const eyebrow = rent.categoriesEyebrow || ui.rentCategoriesEyebrowFallback
+  const badgeText = rent.categoryBadge || ui.rentCategoryBadgeFallback
 
   const [openCategoryId, setOpenCategoryId] = useState(null)
+  const [detailMachine, setDetailMachine] = useState(null)
   const categoryPanelRef = useRef(null)
 
   useEffect(() => {
@@ -45,9 +50,14 @@ export default function RentSection() {
     )
   }, [categories])
 
+  useEffect(() => {
+    setDetailMachine(null)
+  }, [openCategoryId])
+
   const current = categories.find((c) => c.id === openCategoryId)
 
   const closeCategory = useCallback(() => setOpenCategoryId(null), [])
+  const closeDetail = useCallback(() => setDetailMachine(null), [])
 
   useEffect(() => {
     if (!openCategoryId) return
@@ -68,7 +78,9 @@ export default function RentSection() {
 
   function buildWaUrl(machineName) {
     const phone = contact.phoneDigits || '77757147712'
-    const text = `${contact.whatsappText || 'Здравствуйте, интересует аренда'} ${machineName}`
+    const intro =
+      String(contact.whatsappText || '').trim() || ui.rentWhatsappMachineFallback
+    const text = `${intro} ${machineName}`
     return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`
   }
 
@@ -160,7 +172,7 @@ export default function RentSection() {
                   <span className="text-lg leading-none" aria-hidden>
                     ←
                   </span>
-                  К главным разделам
+                  {ui.rentToMainSections}
                 </button>
                 <span className="inline-block text-[10px] sm:text-xs uppercase tracking-wider px-2.5 py-1 rounded-md bg-cyan-400/90 text-[#06152d] font-semibold">
                   {badgeText}
@@ -185,32 +197,48 @@ export default function RentSection() {
             <div className="px-5 pb-8 sm:px-8 md:px-10 md:pb-10">
               <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
                 {(current.machines || []).map((m) => {
-                  const priceRows = getRentMachinePriceRows(m)
+                  const priceRows = getRentMachinePriceRows(
+                    m,
+                    ui.rentTariffFallback,
+                    ui.rentPerDay,
+                  )
                   return (
                   <article
                     key={m.id}
                     className="neon-card rounded-2xl border border-white/10 bg-white/[0.04] p-5 flex flex-col"
                   >
-                    <div className="aspect-square rounded-xl bg-[#0b1d3a] border border-white/10 mb-4 overflow-hidden grid place-items-center">
-                      {hasContentImages(m) ? (
-                        <MediaGallery entity={m} fallbackAlt={m.name} variant="square" />
-                      ) : (
-                        <span className="text-5xl">🛠️</span>
+                    <button
+                      type="button"
+                      onClick={() => setDetailMachine(m)}
+                      className="text-left flex flex-col flex-1 min-h-0 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1d3a]"
+                    >
+                      <div className="aspect-square rounded-xl bg-[#0b1d3a] border border-white/10 mb-4 overflow-hidden grid place-items-center cursor-pointer transition ring-0 hover:border-cyan-400/35">
+                        {hasContentImages(m) ? (
+                          <MediaGallery entity={m} fallbackAlt={m.name} variant="square" />
+                        ) : (
+                          <span className="text-5xl">🛠️</span>
+                        )}
+                      </div>
+                      <h4 className="text-lg font-semibold text-white">{m.name}</h4>
+                      {m.subtitle && (
+                        <p className="mt-1 text-sm text-cyan-300/80">{m.subtitle}</p>
                       )}
-                    </div>
-                    <h4 className="text-lg font-semibold text-white">{m.name}</h4>
-                    {m.subtitle && (
-                      <p className="mt-1 text-sm text-cyan-300/80">{m.subtitle}</p>
-                    )}
-                    {m.description && (
-                      <p className="mt-3 text-sm text-slate-300/90 leading-relaxed flex-1">
-                        {m.description}
-                      </p>
-                    )}
+                      {m.description && (
+                        <p className="mt-3 text-sm text-slate-300/90 leading-relaxed flex-1">
+                          {m.description}
+                        </p>
+                      )}
+                      <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-300/90 hover:text-cyan-200 transition">
+                        {ui.rentMoreDetails}
+                        <span aria-hidden className="text-cyan-400">
+                          →
+                        </span>
+                      </span>
+                    </button>
                     {priceRows.length > 0 && (
                       <div className="mt-3 rounded-xl border border-white/10 bg-black/20 px-3 py-2.5">
                         <div className="text-[10px] uppercase tracking-wider text-slate-500 mb-1.5">
-                          Стоимость аренды
+                          {ui.rentPricingTitle}
                         </div>
                         <ul className="space-y-1.5 text-sm">
                           {priceRows.map((row) => (
@@ -231,7 +259,7 @@ export default function RentSection() {
                       rel="noreferrer"
                       className="mt-5 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-cyan-400 text-[#06152d] font-semibold hover:bg-cyan-300 transition"
                     >
-                      Арендовать
+                      {ui.rentRentCta}
                     </a>
                   </article>
                   )
@@ -245,12 +273,20 @@ export default function RentSection() {
                   className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-5 py-3 text-sm font-semibold text-slate-200 transition hover:border-cyan-400/40 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                 >
                   <span aria-hidden>←</span>
-                  Вернуться к разделам
+                  {ui.rentBackToCategories}
                 </button>
               </div>
             </div>
           </div>
         )}
+
+        <RentMachineDetailModal
+          machine={detailMachine}
+          categoryTitle={current?.title}
+          badgeText={badgeText}
+          waHref={detailMachine ? buildWaUrl(detailMachine.name) : '#'}
+          onClose={closeDetail}
+        />
       </div>
     </section>
   )

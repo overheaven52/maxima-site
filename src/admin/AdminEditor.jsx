@@ -92,7 +92,12 @@ export default function AdminEditor({ onLogout }) {
   }
 
   async function resetToDefaults() {
-    if (!confirm('Сбросить весь контент к шаблону по умолчанию?')) return
+    if (
+      !confirm(
+        'Заменить контент на сохранённый эталон (файл defaultContent.json — текущая версия сайта для публикации: блоки, аренда, языки)? Все правки только в базе контента будут потеряны.',
+      )
+    )
+      return
     try {
       const { content: fresh } = await api.resetContent()
       setContent(fresh)
@@ -155,9 +160,10 @@ export default function AdminEditor({ onLogout }) {
               <button
                 type="button"
                 onClick={resetToDefaults}
+                title="Подставить весь контент из defaultContent.json — актуальная сохранённая версия для выгрузки в сеть."
                 className="text-sm min-h-11 px-4 rounded-lg border border-red-400/30 text-red-300 hover:bg-red-500/10 touch-manip"
               >
-                Вернуть к исходному виду
+                Вернуть к сохранённому эталону
               </button>
             </div>
           </div>
@@ -264,9 +270,10 @@ function SiteTab({ content, update, onReset }) {
         <button
           type="button"
           onClick={onReset}
+          title="Тот же сброс, что и красная кнопка в шапке: контент = defaultContent.json (эталон для публикации)."
           className="text-xs px-3 py-1.5 rounded-lg border border-red-400/30 text-red-300 hover:bg-red-500/10"
         >
-          Сбросить весь контент к шаблону
+          Вернуть к сохранённому эталону
         </button>
       </div>
     </FieldGroup>
@@ -1416,6 +1423,17 @@ function RentTab({ content, update }) {
                   name: 'Новая модель',
                   subtitle: '',
                   description: '',
+                  detail: {
+                    forWork: '',
+                    forWhom: '',
+                    howItWorks: '',
+                    coverage: '',
+                    capabilities: '',
+                    dimensions: '',
+                    notes: '',
+                    specs: [],
+                    gallery: [],
+                  },
                   images: [],
                   imageUrl: '',
                   prices: [],
@@ -1434,11 +1452,140 @@ function RentTab({ content, update }) {
                       onChange={(v) => setM({ ...m, subtitle: v })}
                     />
                     <TextArea
-                      label="Описание"
+                      label="Описание на карточке"
                       value={m.description}
                       onChange={(v) => setM({ ...m, description: v })}
                       rows={3}
+                      hint="Короткий текст только на карточке. В окне по клику показывается отдельное полное описание ниже — без дублирования этого текста."
                     />
+                    <div className="rounded-xl border border-slate-600/80 bg-slate-900/40 px-3 py-3 space-y-3">
+                      <p className="text-xs font-semibold text-slate-300">
+                        Полное описание (окно по клику на карточку)
+                      </p>
+                      <TextArea
+                        label="Для каких работ подходит"
+                        value={m.detail?.forWork ?? ''}
+                        onChange={(v) =>
+                          setM({
+                            ...m,
+                            detail: { ...(m.detail || {}), forWork: v },
+                          })
+                        }
+                        rows={3}
+                      />
+                      <TextArea
+                        label="Для кого и типы объектов"
+                        value={m.detail?.forWhom ?? ''}
+                        onChange={(v) =>
+                          setM({
+                            ...m,
+                            detail: { ...(m.detail || {}), forWhom: v },
+                          })
+                        }
+                        rows={2}
+                        hint="Заказчик, отрасль, формат объекта (склад, ТЦ, стройка и т.д.)."
+                      />
+                      <TextArea
+                        label="Площадь и производительность"
+                        value={m.detail?.coverage ?? ''}
+                        onChange={(v) =>
+                          setM({
+                            ...m,
+                            detail: { ...(m.detail || {}), coverage: v },
+                          })
+                        }
+                        rows={3}
+                        hint="Площадь за смену, охват, ёмкости, ориентиры по выработке."
+                      />
+                      <TextArea
+                        label="Возможности и режимы"
+                        value={m.detail?.capabilities ?? ''}
+                        onChange={(v) =>
+                          setM({
+                            ...m,
+                            detail: { ...(m.detail || {}), capabilities: v },
+                          })
+                        }
+                        rows={3}
+                        hint="Что умеет: режимы, навеска, ограничения, опции."
+                      />
+                      <TextArea
+                        label="Как работает"
+                        value={m.detail?.howItWorks ?? ''}
+                        onChange={(v) =>
+                          setM({
+                            ...m,
+                            detail: { ...(m.detail || {}), howItWorks: v },
+                          })
+                        }
+                        rows={3}
+                      />
+                      <TextArea
+                        label="Размеры и параметры (текстом)"
+                        value={m.detail?.dimensions ?? ''}
+                        onChange={(v) =>
+                          setM({
+                            ...m,
+                            detail: { ...(m.detail || {}), dimensions: v },
+                          })
+                        }
+                        rows={3}
+                        hint="Габариты, масса, радиус разворота, высота/вылет — что важно для проезда и площадки. Точные цифры по паспорту можно дублировать в таблице ниже."
+                      />
+                      <TextArea
+                        label="Дополнительно"
+                        value={m.detail?.notes ?? ''}
+                        onChange={(v) =>
+                          setM({
+                            ...m,
+                            detail: { ...(m.detail || {}), notes: v },
+                          })
+                        }
+                        rows={2}
+                        hint="Условия аренды, доставка, обучение оператора и т.д."
+                      />
+                      <ImagesListField
+                        label="Фото в окне описания (карусель)"
+                        value={m.detail?.gallery || []}
+                        onChange={(v) =>
+                          setM({
+                            ...m,
+                            detail: { ...(m.detail || {}), gallery: v },
+                          })
+                        }
+                        hint="Показываются только в модальном окне по клику: листаются вбок. Если список пуст — там используются фото из «Галерея фото» карточки ниже."
+                      />
+                      <ListEditor
+                        label="Таблица характеристик"
+                        hint="Пара «название — значение» в модальном окне (мощность, ширина захвата, баки, высота подъёма и т.д.)."
+                        items={m.detail?.specs || []}
+                        onChange={(v) =>
+                          setM({
+                            ...m,
+                            detail: { ...(m.detail || {}), specs: v },
+                          })
+                        }
+                        makeNew={() => ({
+                          id: `spec-${Date.now()}`,
+                          label: '',
+                          value: '',
+                        })}
+                        renderItem={(row, setRow) => (
+                          <div className="grid sm:grid-cols-2 gap-3">
+                            <TextField
+                              label="Параметр"
+                              value={row.label}
+                              onChange={(v) => setRow({ ...row, label: v })}
+                            />
+                            <TextField
+                              label="Значение"
+                              value={row.value}
+                              onChange={(v) => setRow({ ...row, value: v })}
+                            />
+                          </div>
+                        )}
+                      />
+                    </div>
                     <ImagesListField
                       label="Галерея фото"
                       value={m.images}

@@ -34,3 +34,18 @@ export function getContentImages(obj, fallbackAlt = '') {
 export function hasContentImages(obj) {
   return getContentImages(obj).length > 0
 }
+
+/**
+ * Фото для модального окна аренды техники: если в `detail.gallery` есть снимки —
+ * только они (карусель в «развёрнутом описании»), иначе обычная галерея карточки `images` / `imageUrl`.
+ */
+export function getRentMachineModalImages(machine) {
+  if (!machine || typeof machine !== 'object') return []
+  const alt = String(machine.name || '').trim()
+  const raw = machine.detail?.gallery
+  if (Array.isArray(raw) && raw.length > 0) {
+    const onlyGallery = getContentImages({ images: raw, imageUrl: '' }, alt)
+    if (onlyGallery.length > 0) return onlyGallery
+  }
+  return getContentImages(machine, alt)
+}
